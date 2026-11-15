@@ -1,0 +1,94 @@
+/* Functional styling only. Visual design is intentionally left to the UI pass (see docs/HANDOFF.md). */
+:root {
+  --bg: #f4f1ea;
+  --panel: #fbfaf6;
+  --ink: #23201a;
+  --muted: #6b6558;
+  --line: #d6cfbf;
+  --accent: #7a4b1e;
+  --awake: #2e8b57;
+  --holding: #2f6fb0;
+  --dark: #4a4a55;
+  --warn: #a8610b;
+  --err: #a32222;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { background: var(--bg); }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { border: 1px solid var(--line); background: #fff; border-radius: 4px; padding: 3px 9px; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button.on, button[aria-selected='true'] { background: var(--accent); color: #fff; border-color: var(--accent); }
+button.link { border: 0; background: none; padding: 0; color: var(--accent); text-decoration: underline; }
+button:disabled { opacity: 0.5; cursor: default; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.app { display: grid; grid-template: auto 1fr / 340px 1fr 380px; height: 100%; }
+.toolbar { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 6px 12px; border-bottom: 1px solid var(--line); background: var(--panel); }
+.toolbar h1 { font-size: 16px; margin: 0 8px 0 0; }
+.group { display: flex; align-items: center; gap: 6px; }
+.group label { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+
+.panel { overflow-y: auto; padding: 10px 12px; background: var(--panel); min-height: 0; }
+.panel.side { border-right: 1px solid var(--line); }
+.panel.details { border-left: 1px solid var(--line); }
+.panel h2 { font-size: 16px; margin: 6px 0; }
+.panel h3 { font-size: 13px; margin: 14px 0 4px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.panel ul { list-style: none; margin: 0; padding: 0; }
+.panel table { border-collapse: collapse; width: 100%; }
+.panel td { padding: 2px 6px 2px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.hint, .meta { color: var(--muted); margin: 4px 0; }
+.status { background: #fff7e0; border: 1px solid #e6d59a; padding: 4px 8px; border-radius: 4px; }
+.rejected li { color: var(--err); margin: 4px 0; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.tabs { display: flex; gap: 4px; margin-bottom: 6px; }
+.quote { border-left: 3px solid var(--line); padding: 2px 0 2px 8px; margin: 6px 0; overflow-wrap: anywhere; }
+.cite { display: block; font-size: 11px; color: var(--muted); font-family: ui-monospace, Consolas, monospace; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag { border: 1px solid var(--line); border-radius: 10px; padding: 0 7px; background: #fff; }
+.note { background: #fffbe8; border: 1px solid #eadf9e; border-radius: 4px; padding: 4px 6px; margin: 4px 0; }
+form { display: grid; gap: 4px; margin-top: 6px; }
+textarea { min-height: 48px; resize: vertical; }
+input[type='text'], input:not([type]), textarea, select { border: 1px solid var(--line); border-radius: 4px; padding: 3px 6px; background: #fff; max-width: 100%; }
+del { color: var(--err); } ins { color: var(--awake); text-decoration: none; }
+dl { margin: 0; } dt { font-weight: 600; margin-top: 8px; } dd { margin: 0; }
+
+.issue { border: 1px solid var(--line); border-radius: 4px; padding: 6px 8px; margin: 6px 0; background: #fff; }
+.issue summary { cursor: pointer; }
+.issue .sev { font-size: 11px; text-transform: uppercase; font-weight: 700; margin-right: 4px; }
+.issue.warning .sev { color: var(--warn); } .issue.error .sev { color: var(--err); } .issue.info .sev { color: var(--muted); }
+
+.map-wrap { position: relative; min-width: 0; min-height: 0; }
+.map { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; user-select: none; background: #e9e4d8; }
+.map:active { cursor: grabbing; }
+.map-world { fill: #f7f3e8; stroke: var(--line); }
+.map-grid line { stroke: #e4dccb; stroke-width: 1; }
+.map-relation line { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 2 4; }
+.map-relation.inferred line { opacity: 0.5; }
+.map-relation text { font-size: 11px; fill: var(--accent); text-anchor: middle; }
+.marker { cursor: pointer; }
+.map.editing .marker { cursor: move; }
+.marker .dot { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }
+.marker.provisional .dot { stroke-dasharray: 3 2; }
+.marker.unanchored .dot { fill: #efe9da; stroke: var(--muted); }
+.marker.user-placed .dot { fill: var(--accent); }
+.marker.region .dot { fill-opacity: 0.4; }
+.marker.selected .dot { stroke: var(--accent); stroke-width: 3; }
+.marker .label { font-size: 12px; paint-order: stroke; stroke: #f7f3e8; stroke-width: 3px; }
+.marker .sub { font-size: 10px; fill: var(--muted); paint-order: stroke; stroke: #f7f3e8; stroke-width: 3px; }
+.marker .silence { fill: none; stroke-width: 4; }
+.silence.awake { stroke: var(--awake); } .silence.holding { stroke: var(--holding); } .silence.dark { stroke: var(--dark); stroke-dasharray: 1 3; }
+.marker .party { fill: none; stroke: var(--err); stroke-width: 2; }
+.badge circle { fill: var(--accent); } .badge text { fill: #fff; font-size: 9px; text-anchor: middle; font-weight: 700; }
+.pin path { fill: var(--err); } .pin text { font-size: 11px; }
+.compass path { fill: var(--muted); } .compass text { font-size: 11px; text-anchor: middle; fill: var(--muted); }
+.legend { position: absolute; left: 8px; right: 8px; bottom: 6px; margin: 0; padding: 4px 8px; background: rgba(251, 250, 246, 0.9); border: 1px solid var(--line); border-radius: 4px; font-size: 12px; color: var(--muted); pointer-events: none; }
+.empty { display: grid; place-items: center; height: 100%; padding: 24px; text-align: center; color: var(--muted); }
+
+@media (max-width: 1000px) {
+  .app { grid-template: auto 60vh auto auto / 1fr; height: auto; }
+  .panel.side, .panel.details { border: 0; border-top: 1px solid var(--line); }
+}
