@@ -8,7 +8,7 @@ import type { Bearing, Point } from '../domain/types';
 
 export const WORLD_SIZE = 1000;
 export const MIN_ZOOM = 0.6;
-export const MAX_ZOOM = 16;
+export const MAX_ZOOM = 10;
 
 export interface Viewport {
   /** World point at the centre of the screen. */
