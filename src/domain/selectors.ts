@@ -66,6 +66,19 @@ export function eventsAt(ix: WorldIndex, locationId: string, upToDay: number | n
     .sort((a, b) => (a.time?.dayStart ?? Infinity) - (b.time?.dayStart ?? Infinity));
 }
 
+/** The days on which the session log dates an entry, ascending. These are the timeline's milestones. */
+export function eventDays(ix: WorldIndex): number[] {
+  const days = new Set<number>();
+  for (const e of ix.world.entities) if (e.kind === 'event' && e.time?.dayStart !== undefined) days.add(e.time.dayStart);
+  return [...days].sort((a, b) => a - b);
+}
+
+/** The last day on which a dated session-log entry names the place, or null. Not proof of a visit. */
+export function lastLoggedDay(ix: WorldIndex, locationId: string): number | null {
+  const days = entitiesMentioning(ix, locationId, 'event').map((e) => e.time?.dayEnd ?? e.time?.dayStart).filter((d): d is number => d !== undefined);
+  return days.length ? Math.max(...days) : null;
+}
+
 /** True when the chronicle's session log names the place. This is "appears in the record of play", not proof of a visit. */
 export function recordedInPlay(ix: WorldIndex, locationId: string): boolean {
   return entitiesMentioning(ix, locationId, 'event').length > 0;

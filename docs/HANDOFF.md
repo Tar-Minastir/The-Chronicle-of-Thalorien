@@ -288,3 +288,87 @@ the *Save as Markdown…* download itself (the same text was checked in the prev
   As of milestone 2B the folder lists only the four authorized documents. If private files are put there again,
   note that the folder is not git-ignored.
 - Nothing was committed (`git` is not on PATH in this environment).
+
+---
+
+# Milestone 2C — redesigned shell and illustrated overlays
+
+Built on branch `feature/fantasy-atlas`. Note for the owner: `UI-redesign` was created from `main` and does **not**
+contain milestones 2/2B; this work is not on it.
+
+## What changed
+
+**Fourth rendering layer: the application shell** (never moves with the map)
+- `src/ui/shell/Sidebar.tsx` — ornate sidebar: logo, primary navigation (World Atlas, Quests, Companions, Journal),
+  secondary "Codex" group (Character, Encyclopedia, Rules, History), slot for the contextual panel.
+- `src/ui/shell/icons.tsx` — engraved line icons, corner `Flourish`, `Divider`, and `WhiteTreeEmblem`. The emblem
+  follows the chronicle's description of the first silence's sign, "the Tree whose roots are its crown": the roots
+  mirror the branches.
+- `src/ui/LocationPreview.tsx` — contextual panel: illustration, title, description, fact rows, action button.
+  Rows are derived from the record and omitted when nothing is recorded. The description is the place's own record,
+  else a line of the documents that defines it; "CURRENT STATE" planning lines are skipped.
+- `src/ui/AtlasPage.tsx` — top atlas bar (Atlas / Locations / Factions / Routes open the dock with an index;
+  search; saved views; settings → layers), floating mode switch, controls, legend, timeline, and the dock.
+- `src/ui/Codex.tsx` — `Tome` page frame (dark frame, parchment leaf) used by every book page; chapters fold;
+  `SheetPage` has a summary plate (monogram portrait placeholder, ability table, vitals) and section navigation.
+- `src/ui/styles.css` — the design system, in twelve labelled sections; tokens follow the brief's palette.
+
+**Map composition**
+- `coverViewport(focus, size, extra)` / `showsMargin` (`src/map/viewport.ts`): the land fills the viewport on any
+  aspect ratio without stretching. On first load, a stored view that would show empty space is reframed on the
+  company's location. "Reset view" returns there; "Whole world" still shows the complete square world.
+- Beyond the world's edge the surface is dark mist, not blank parchment (`.mist`, `.atlas-map`).
+
+**Overlays and cartography**
+- Major places (tier 0) are lettered on parchment ribbons; lesser names stay compact. Hero tokens reserve label
+  space so names are not placed under them.
+- `src/atlas/vignettes.tsx`: vector settlement vignettes by culture (`PLACE_ART`, with the reason for each choice),
+  a 2:1 `PanelScene`, and the artwork slots (`useArtwork`, `artUrl`).
+- `art.tsx`: hanging gonfalon banners, diamond silence sigils, hero medallion with silhouette and nameplate for the
+  hero (initials for companions; `portraitFor` hook unchanged).
+- Routes are gold dotted lines with dark casing and stop markers.
+
+**State**
+- `MapState.bookmarks` (saved camera views; `add-bookmark`, `remove-bookmark`), `set-overlay`; older saved states
+  are upgraded by `restoreMapState`.
+- Selectors `eventDays`, `lastLoggedDay`.
+
+## Decisions worth knowing
+
+- **The timeline moves through campaign days, not import snapshots.** Its milestones are the days the session log
+  dates. Import snapshots are a different history (what the documents said at each import) and stay under History.
+  The brief asked for snapshot navigation on the timeline; mixing the two would have shown "Day 75" for every
+  snapshot. Say so if the snapshot behaviour is wanted there as well.
+- **"Last in the session log", not "Last visited".** The documents do not record visits.
+- **No "allegiance" row.** The documents establish no territorial allegiance for places.
+- **Uchkeken stays fire-scarred** in terrain, vignette and panel; the Silver Mere stays fens (no harbour).
+
+## Artwork
+
+The terrain is still the procedural painting from milestone 2B. It is **not** a painted illustration and does not
+match the approved reference's richness. Reaching that needs supplied artwork; the slots and a full specification
+are in `docs/ART_ASSETS.md` (world base map, per-place vignettes, per-place panel scenes). No image assets exist yet.
+
+## Verification (this milestone)
+
+Automated: 159 tests pass (`tests/shell.test.ts` added); `tsc --noEmit` clean; production build succeeds.
+
+In the running app at 1536×864: default view fills the viewport with no margin; selecting a place updates the
+sidebar panel without opening the dock; "View Location Details" opens the dock; Locations / Factions / Routes
+indexes; Exploration ↔ Strategic (7 sigils, banners); hero selection; timeline first / previous / latest and its
+captions; saved views add and remove; search; layers panel (17 rows); marker drag survived a reload and was reset;
+"Sync from disk" reported no changes; all seven book pages rendered with data; fresh load produced no console
+errors. At 375×812: no horizontal overflow, map and timeline usable.
+
+Not verified: other browsers; real touch gestures (pinch zoom is not implemented); frame rate; the Markdown
+download itself; behaviour with real image assets in the slots.
+
+## Remaining work
+
+1. Supply artwork per `docs/ART_ASSETS.md`; optionally the layered painted-terrain extension described there.
+2. Geometry editing for proposed regions and a distinct "move the label / illustration" action (brief §36). Today:
+   place markers and proposed landmarks can be dragged; outlines are fixed.
+3. Recording the DM's accept / reject decision per proposal (brief §37); export still has the checkboxes only.
+4. Pinch zoom and a bottom-sheet dock on phones; fullscreen control.
+5. Deeper page design: quest objectives and clues as structured fields, NPC profile pages, cross-links between pages.
+6. Painting off the main thread and caching (carried over from 2B).

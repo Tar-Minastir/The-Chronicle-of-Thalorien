@@ -82,13 +82,17 @@ export function SilenceSigil({ state, r }: { state: SilenceState; r: number }) {
     const rad = i % 2 === 0 ? r : r * 0.52;
     return `${(Math.sin(a) * rad).toFixed(1)},${(-Math.cos(a) * rad).toFixed(1)}`;
   }).join(' ');
+  const d = r * 1.25;
   return (
     <g className={`sigil ${state}`}>
-      {state === 'awake' && <circle className="glow" r={r + 4} />}
-      <polygon className="star" points={star} />
-      <circle className="eye" r={r * 0.3} />
-      {state === 'holding' && <circle className="outer" r={r + 3} />}
-      {state === 'dark' && <path className="rift" d={`M${-r * 0.6} ${-r * 0.6} L${r * 0.6} ${r * 0.6}`} />}
+      {state === 'awake' && <circle className="glow" r={d + 5} />}
+      {/* Diamond plate with an engraved star: unlike any settlement, banner or hero marker. */}
+      <path className="plate" d={`M0 ${-d} L${d} 0 L0 ${d} L${-d} 0 Z`} />
+      <path className="inset" d={`M0 ${-d * 0.74} L${d * 0.74} 0 L0 ${d * 0.74} L${-d * 0.74} 0 Z`} />
+      <polygon className="star" points={star} transform="scale(0.58)" />
+      <circle className="eye" r={r * 0.16} />
+      {state === 'holding' && <path className="outer" d={`M0 ${-d - 4} L${d + 4} 0 L0 ${d + 4} L${-d - 4} 0 Z`} />}
+      {state === 'dark' && <path className="rift" d={`M${-d * 0.45} ${-d * 0.45} L${d * 0.1} ${-d * 0.05} L${-d * 0.1} ${d * 0.1} L${d * 0.45} ${d * 0.45}`} />}
     </g>
   );
 }
@@ -99,14 +103,17 @@ export function Banner({ id, name, stale, allied }: { id: string; name: string; 
   return (
     <g className={`banner${stale ? ' stale' : ''}`}>
       <title>{`${name}${stale ? ' — entry may be out of date' : ''}${allied ? ' — entry says “allied”' : ''} (named in the faction’s entry; not a claim of control)`}</title>
-      <path className="pole" d="M0 4 V-24" />
-      <path d="M0 -24 H15 L11.5 -16.5 L15 -9 H0 Z" fill={d.field} />
-      {d.division === 1 && <path d="M7.5 -24 H15 L11.5 -16.5 L15 -9 H7.5 Z" fill={d.band} opacity="0.85" />}
-      {d.division === 2 && <path d="M0 -16.5 H11.5 L15 -9 H0 Z" fill={d.band} opacity="0.85" />}
-      {d.division === 3 && <path d="M0 -24 L7 -16.5 L0 -9" fill="none" stroke={d.band} strokeWidth="2.2" />}
-      <path className="edge" d="M0 -24 H15 L11.5 -16.5 L15 -9 H0 Z" />
-      <text x="6" y="-13">{stale ? '?' : d.letter}</text>
-      {allied && <circle className="laurel" cx="0" cy="-25.5" r="2.4" />}
+      {/* A hanging gonfalon: crossbar with finials, cloth with a swallow-tail hem, gold edge. */}
+      <path className="pole" d="M0 6 V-34" />
+      <path className="bar" d="M-9.5 -31 H9.5" />
+      <circle className="finial" cx="-9.5" cy="-31" r="1.5" /><circle className="finial" cx="9.5" cy="-31" r="1.5" /><circle className="finial" cx="0" cy="-35" r="1.8" />
+      <path d="M-8 -30 H8 V-10 L0 -4.5 L-8 -10 Z" fill={d.field} />
+      {d.division === 1 && <path d="M0 -30 H8 V-10 L0 -4.5 Z" fill={d.band} opacity="0.8" />}
+      {d.division === 2 && <path d="M-8 -30 H8 V-23 H-8 Z" fill={d.band} opacity="0.85" />}
+      {d.division === 3 && <path d="M-8 -22 L0 -15 L8 -22" fill="none" stroke={d.band} strokeWidth="2.2" />}
+      <path className="edge" d="M-8 -30 H8 V-10 L0 -4.5 L-8 -10 Z" />
+      <text x="0" y={d.division === 2 ? -12.5 : -15.5}>{stale ? '?' : d.letter}</text>
+      {allied && <path className="laurel" d="M-3.4 -38.5 L0 -41.5 L3.4 -38.5 L0 -36.5 Z" />}
     </g>
   );
 }
@@ -115,12 +122,13 @@ export function Banner({ id, name, stale, allied }: { id: string; name: string; 
  * Hero medallion. Shows an approved portrait when one is supplied; otherwise a monogram.
  * `portraitUrl` is the hook for the future Character Appearance Registry: nothing here invents a likeness.
  */
-export function HeroToken({ id, name, lead, selected, portraitUrl }: { id: string; name: string; lead: boolean; selected: boolean; portraitUrl?: string | null }) {
-  const r = lead ? 14 : 11.5;
+export function HeroToken({ id, name, lead, selected, portraitUrl, plate }: { id: string; name: string; lead: boolean; selected: boolean; portraitUrl?: string | null; plate?: string }) {
+  const r = lead ? 19 : 12.5;
+  const w = plate ? plate.length * 6.4 + 18 : 0;
   const clip = `hero-clip-${id.replace(/[^a-z0-9]/gi, '-')}`;
   return (
     <g className={`hero-token${lead ? ' lead' : ''}${selected ? ' selected' : ''}`}>
-      <path className="stem" d={`M0 ${r + 2} L-4 ${r + 3} L0 ${r + 11} L4 ${r + 3} Z`} />
+      {!plate && <path className="stem" d={`M0 ${r + 2} L-4 ${r + 3} L0 ${r + 11} L4 ${r + 3} Z`} />}
       <circle className="rim" r={r + 3} />
       <circle className="face" r={r} />
       {portraitUrl ? (
@@ -129,7 +137,19 @@ export function HeroToken({ id, name, lead, selected, portraitUrl }: { id: strin
           <image href={portraitUrl} x={-r} y={-r} width={r * 2} height={r * 2} preserveAspectRatio="xMidYMid slice" clipPath={`url(#${clip})`} />
         </>
       ) : (
-        <text y={lead ? 4.6 : 4} style={{ fontSize: lead ? 12.5 : 10.5 }}>{monogram(name)}</text>
+        <>
+          {/* No approved portrait: a neutral silhouette for the hero, initials for companions. Never an invented likeness. */}
+          {lead
+            ? <path className="silhouette" d={`M0 ${-r * 0.52} a${r * 0.3} ${r * 0.3} 0 1 0 0.01 0 Z M${-r * 0.62} ${r * 0.78} Q${-r * 0.56} ${r * 0.12} 0 ${r * 0.12} Q${r * 0.56} ${r * 0.12} ${r * 0.62} ${r * 0.78} Z`} />
+            : <text y={4.2} style={{ fontSize: 11 }}>{monogram(name)}</text>}
+        </>
+      )}
+      <circle className="ring" r={r + 1.3} />
+      {plate && (
+        <g className="nameplate" transform={`translate(0 ${r + 12})`}>
+          <path d={`M${-w / 2} -7.5 H${w / 2} L${w / 2 + 5} 0 L${w / 2} 7.5 H${-w / 2} L${-w / 2 - 5} 0 Z`} />
+          <text y={4}>{plate}</text>
+        </g>
       )}
     </g>
   );

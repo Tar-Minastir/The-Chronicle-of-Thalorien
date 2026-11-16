@@ -76,7 +76,28 @@ export function fitPoints(points: Point[], size: Size, margin = 0.15): Viewport 
   return clampViewport({ cx: (Math.max(...xs) + Math.min(...xs)) / 2, cy: (Math.max(...ys) + Math.min(...ys)) / 2, zoom });
 }
 
-export const clampToWorld = (p: Point): Point => ({ x: clamp(p.x, 0, WORLD_SIZE), y: clamp(p.y, 0, WORLD_SIZE) });
+/**
+ * Aspect-aware framing: the smallest zoom at which the world covers the whole viewport (no empty
+ * margin on a wide or tall screen), centred as near to `focus` as the world's edges allow.
+ * The world is not stretched; a wide screen simply shows a wide slice of it.
+ */
+export function coverViewport(focus: Point, size: Size, extra = 1): Viewport {
+  const zoom = Math.min(MAX_ZOOM, (Math.max(size.width, size.height) / Math.min(size.width, size.height)) * Math.max(1, extra));
+  const s = (Math.min(size.width, size.height) / WORLD_SIZE) * zoom;
+  const hw = Math.min(size.width / s / 2, WORLD_SIZE / 2);
+  const hh = Math.min(size.height / s / 2, WORLD_SIZE / 2);
+  return { zoom, cx: clamp(focus.x, hw, WORLD_SIZE - hw), cy: clamp(focus.y, hh, WORLD_SIZE - hh) };
+}
+
+/** True when the viewport shows empty space beyond the world on some side. */
+export function showsMargin(vp: Viewport, size: Size): boolean {
+  const s = scaleOf(vp, size);
+  const hw = size.width / s / 2;
+  const hh = size.height / s / 2;
+  return vp.cx - hw < -0.5 || vp.cx + hw > WORLD_SIZE + 0.5 || vp.cy - hh < -0.5 || vp.cy + hh > WORLD_SIZE + 0.5;
+}
+
+export const clampToWorld =(p: Point): Point => ({ x: clamp(p.x, 0, WORLD_SIZE), y: clamp(p.y, 0, WORLD_SIZE) });
 
 const BEARING_DEG: Record<Bearing, number> = { N: 0, NE: 45, E: 90, SE: 135, S: 180, SW: 225, W: 270, NW: 315 };
 

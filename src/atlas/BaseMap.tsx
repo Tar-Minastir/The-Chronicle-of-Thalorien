@@ -1,13 +1,18 @@
 /**
- * Base geography (rendering system 1 of 3): a <canvas> under the SVG layers.
+ * Base geography (rendering system 1 of 4): a <canvas> under the SVG layers.
  * It knows nothing about places, labels, heroes or selection, and stays on screen when every
  * cartographic and interactive layer is hidden.
+ *
+ * ARTWORK SLOT: if a painted base map exists at /atlas-art/world.webp it is drawn in place of the
+ * procedural painting, aligned to the same 0..1000 world square, so coordinates, markers and routes
+ * are unaffected. Without it, the procedural terrain from fields.ts / paint.ts is used.
  */
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { Size, Viewport } from '../map/viewport';
 import { scaleOf } from '../map/viewport';
 import type { AtlasFeature } from './geography';
-import { buildRaster, drawBase, type AtlasRaster, type BaseLayers } from './paint';
+import { WORLD, buildRaster, drawBase, type AtlasRaster, type BaseLayers } from './paint';
+import { artUrl, useArtwork } from './vignettes';
 
 /** Bitmap side in px for the 1000-unit world. 2048 keeps the painting sharp to about 4× zoom; trees take over beyond. */
 export const RASTER_SIZE = 2048;
@@ -26,8 +31,20 @@ export function BaseMap({ features, viewport, size, layers }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
   const [raster, setRaster] = useState<AtlasRaster | null>(null);
   const [stage, setStage] = useState('');
+  const [painting, setPainting] = useState<HTMLImageElement | null>(null);
+  const paintedUrl = useArtwork(artUrl.world);
   // Geometry is fixed per feature id, so the id list identifies a painting.
   const key = features.map((f) => f.id).join('|');
+
+  useEffect(() => {
+    if (!paintedUrl) {
+      setPainting(null);
+      return;
+    }
+    const img = new Image();
+    img.onload = () => setPainting(img);
+    img.src = paintedUrl;
+  }, [paintedUrl]);
 
   useEffect(() => {
     let alive = true;
@@ -61,18 +78,26 @@ export function BaseMap({ features, viewport, size, layers }: Props) {
     }
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    const s = scaleOf(viewport, size) * dpr;
+    const ox = w / 2 - viewport.cx * s;
+    const oy = h / 2 - viewport.cy * s;
+    if (painting && layers.terrain) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(painting, ox, oy, WORLD * s, WORLD * s);
+      return;
+    }
     if (!raster) {
       ctx.clearRect(0, 0, w, h);
       return;
     }
-    const s = scaleOf(viewport, size) * dpr;
-    drawBase(ctx, raster, layers, w / 2 - viewport.cx * s, h / 2 - viewport.cy * s, s, w, h);
-  }, [raster, viewport, size, layers.terrain, layers.forests, layers.mountains, layers.waters]);
+    drawBase(ctx, raster, layers, ox, oy, s, w, h);
+  }, [raster, painting, viewport, size, layers.terrain, layers.forests, layers.mountains, layers.waters]);
 
   return (
     <>
       <canvas ref={ref} className="base-map" aria-hidden="true" />
-      {stage && layers.terrain && <p className="inking" role="status">{stage}</p>}
+      {stage && layers.terrain && !painting && <p className="inking" role="status">{stage}</p>}
     </>
   );
 }

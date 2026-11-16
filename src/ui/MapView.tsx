@@ -14,6 +14,7 @@ import { BaseMap } from '../atlas/BaseMap';
 import { AtlasFrame, Banner, CompassRose, HeroToken, PlaceIcon, ProposedIcon, RouteLayer, SilenceSigil } from '../atlas/art';
 import type { AtlasFeature } from '../atlas/geography';
 import { ROUTES, terrainOf } from '../atlas/terrain';
+import { PLACE_ART, Vignette, artUrl, useArtwork, type PlaceArt } from '../atlas/vignettes';
 import type { MapViewModel, MarkerVM } from '../map/layers';
 import type { MapAction, MapState } from '../map/mapState';
 import { TIER_MIN_ZOOM, clampToWorld, scaleOf, screenToWorld, worldToScreen, type Size } from '../map/viewport';
@@ -51,8 +52,20 @@ interface Label {
   angle?: number;
   sub?: string;
   entity?: string;
+  /** Major places are lettered on a parchment ribbon. */
+  ribbon?: boolean;
   priority: number;
   width: number;
+}
+
+/** A place's illustration: a supplied painting if one exists under /atlas-art/places/, else the vector vignette. */
+function PlaceArtwork({ slug, art, scale }: { slug: string; art: PlaceArt; scale: number }) {
+  const painted = useArtwork(artUrl.place(slug));
+  return (
+    <g className="place-art" transform={`translate(0 7) scale(${scale})`}>
+      {painted ? <image href={painted} x={-34} y={-58} width={68} height={62} preserveAspectRatio="xMidYMax meet" /> : <Vignette art={art} />}
+    </g>
+  );
 }
 
 const RECORDED_LABEL = { here: 'the company is here', 'in-play': 'recorded in play', report: 'known by report' } as const;
@@ -156,6 +169,9 @@ export function MapView({ vm, state, positions, features, overrides, dispatch, o
   const worldTransform = `translate(${(size.width / 2 - viewport.cx * s).toFixed(2)} ${(size.height / 2 - viewport.cy * s).toFixed(2)}) scale(${s.toFixed(4)})`;
   const strategic = state.mode === 'strategic';
   const posOf = (m: MarkerVM) => toScreen(dragPos?.id === m.id ? dragPos.position : m.position);
+  // Major places are drawn as illustrated vignettes; lesser ones gain theirs as the camera closes in.
+  const artOf = (m: MarkerVM): PlaceArt | undefined =>
+    !m.silence && (m.tier === 0 || viewport.zoom >= 2.4) ? PLACE_ART[m.id.replace('location:', '')] : undefined;
 
   // ---- what is shown
   const markers = vm.markers.filter((m) => (m.kind === 'site' ? layers.sites || Boolean(m.silence) : layers.places || Boolean(m.silence)));
@@ -178,10 +194,10 @@ export function MapView({ vm, state, positions, features, overrides, dispatch, o
       m.noteCount > 0 ? `${m.noteCount} note${m.noteCount > 1 ? 's' : ''}` : '',
     ].filter(Boolean).join(' · ');
     candidates.push({
-      id: m.id, text: m.name, x: p.x, y: p.y + 11 * k + 13, sub: sub || undefined,
+      id: m.id, text: m.name, x: p.x, y: p.y + (artOf(m) ? 26 : m.tier === 0 ? 30 : 11 * k + 13), sub: sub || undefined, ribbon: m.tier === 0,
       cls: `place-label ${m.kind} tier-${m.tier} ${m.recorded}`,
       priority: (m.selected ? 100 : 0) + (m.isPartyHere ? 50 : 0) + (m.silence ? 20 : 0) + (2 - m.tier) * 10,
-      width: m.name.length * (m.kind === 'region' ? 11.5 : 7.6) + 16,
+      width: m.name.length * (m.tier === 0 ? 9.2 : m.kind === 'region' ? 11.5 : 7.6) + (m.tier === 0 ? 34 : 16),
     });
   }
   for (const f of features) {
@@ -205,6 +221,15 @@ export function MapView({ vm, state, positions, features, overrides, dispatch, o
   const shown: Label[] = [];
   if (layers.labels) {
     const boxes: { x: number; y: number; w: number; h: number }[] = [];
+    // Hero tokens claim their space first, so no place name is lettered underneath them.
+    const seen = new Set<string>();
+    for (const h of vm.heroes) {
+      if (!h.position || !h.locationId || seen.has(h.locationId)) continue;
+      seen.add(h.locationId);
+      const n = vm.heroes.filter((o) => o.locationId === h.locationId && o.position).length;
+      const at = toScreen(dragPos?.id === h.locationId ? dragPos.position : h.position);
+      boxes.push({ x: at.x - n * 19 - 30, y: at.y - 120, w: n * 38 + 60, h: 80 });
+    }
     for (const c of candidates.sort((a, b) => b.priority - a.priority)) {
       // A rotated label is boxed by its diagonal extent.
       const tall = c.angle ? Math.min(c.width, 20 + Math.abs(Math.sin((c.angle * Math.PI) / 180)) * c.width) : c.sub ? 31 : 18;
@@ -258,8 +283,18 @@ export function MapView({ vm, state, positions, features, overrides, dispatch, o
               transform={`translate(${l.x.toFixed(1)} ${l.y.toFixed(1)})${l.angle ? ` rotate(${l.angle})` : ''}`}
               {...(l.entity ? { tabIndex: 0, role: 'button', 'aria-label': `${l.text} (proposed atlas addition)`, onKeyDown: onKey(l.entity) } : {})}
             >
-              <text className="label">{l.cls.includes('proposed') ? `❧ ${l.text}` : l.text}</text>
-              {l.sub && <text className="sub" y={12}>{l.sub}</text>}
+              {l.ribbon && (() => {
+                const h = l.width / 2 - 14;
+                return (
+                  <g className="ribbon">
+                    <path className="tail" d={`M${-h + 4} -9 L${-h - 13} -11 L${-h - 8} -2.5 L${-h - 13} 6 L${-h + 4} 8 Z M${h - 4} -9 L${h + 13} -11 L${h + 8} -2.5 L${h + 13} 6 L${h - 4} 8 Z`} />
+                    <path className="band" d={`M${-h} -15 Q0 -17.5 ${h} -15 V5 Q0 2.5 ${-h} 5 Z`} />
+                    <path className="fold" d={`M${-h} 5 L${-h + 4} 8 V-9 Z M${h} 5 L${h - 4} 8 V-9 Z`} />
+                  </g>
+                );
+              })()}
+              <text className="label" y={l.ribbon ? -1 : 0}>{l.cls.includes('proposed') ? `❧ ${l.text}` : l.text}</text>
+              {l.sub && <text className="sub" y={l.ribbon ? 19 : 12}>{l.sub}</text>}
             </g>
           ))}
         </g>
@@ -303,8 +338,10 @@ export function MapView({ vm, state, positions, features, overrides, dispatch, o
                 {m.selected && <circle className="select-ring" r={18 * iconSize} />}
                 <circle className="hit" r={13} />
                 {m.silence
-                  ? <SilenceSigil state={m.silence} r={12 * iconSize} />
-                  : <><circle className="plinth" r={10.5 * iconSize} /><PlaceIcon kind={m.kind} terrain={terrainOf(m.id.replace('location:', ''))} size={iconSize} /></>}
+                  ? <SilenceSigil state={m.silence} r={11 * iconSize} />
+                  : artOf(m)
+                    ? <PlaceArtwork slug={m.id.replace('location:', '')} art={artOf(m)!} scale={m.tier === 0 ? 1 : 0.68} />
+                    : <><circle className="plinth" r={10.5 * iconSize} /><PlaceIcon kind={m.kind} terrain={terrainOf(m.id.replace('location:', ''))} size={iconSize} /></>}
                 {m.positionStatus === 'user-placed' && <path className="user-pin" d="M8 -12 l3.5 -3.5 l3.5 3.5 l-3.5 3.5 Z" />}
                 {!strategic && m.badge > 0 && (
                   <g className="badge" transform={`translate(${12 * iconSize} ${-11 * iconSize})`}>
@@ -352,8 +389,9 @@ export function MapView({ vm, state, positions, features, overrides, dispatch, o
             {[...groups.entries()].map(([locId, list]) => {
               const base = toScreen(dragPos?.id === locId ? dragPos.position : list[0].position!);
               return list.map((h, i) => {
-                const x = base.x + (i - (list.length - 1) / 2) * 33;
-                const y = base.y - 48 - (h.role === 'player-character' ? 3 : 0);
+                const lead = h.role === 'player-character';
+                const x = base.x + (i - (list.length - 1) / 2) * 38;
+                const y = base.y - (lead ? 96 : 84);
                 return (
                   <g
                     key={h.id}
@@ -367,7 +405,7 @@ export function MapView({ vm, state, positions, features, overrides, dispatch, o
                     onKeyDown={onKey(h.id)}
                   >
                     <title>{`${h.name} — ${h.basis}`}</title>
-                    <HeroToken id={h.id} name={h.name} lead={h.role === 'player-character'} selected={h.selected} portraitUrl={portraitFor?.(h.id)} />
+                    <HeroToken id={h.id} name={h.name} lead={lead} selected={h.selected} portraitUrl={portraitFor?.(h.id)} plate={lead ? h.name : undefined} />
                   </g>
                 );
               });
@@ -385,6 +423,7 @@ export function MapView({ vm, state, positions, features, overrides, dispatch, o
           })}
         </g>
       </svg>
+      <div className="mist" aria-hidden="true" />
       <AtlasFrame />
       <CompassRose />
     </div>
