@@ -65,11 +65,17 @@ export function useArtwork(url: string | null): string | null {
   return ok ? url : null;
 }
 
+/**
+ * Where the site is served from: "/" locally, "/The-Chronicle-of-Thalorien/" on GitHub Pages.
+ * `import.meta.env` is absent when node scripts (tsx) import this module, hence the fallback.
+ */
+export const BASE_URL: string = import.meta.env?.BASE_URL ?? '/';
+
 export const artUrl = {
   /** Painted base map covering the whole 0..1000 world square. */
-  world: '/atlas-art/world.webp',
-  place: (slug: string) => `/atlas-art/places/${slug}.webp`,
-  panel: (slug: string) => `/atlas-art/panels/${slug}.webp`,
+  world: `${BASE_URL}atlas-art/world.webp`,
+  place: (slug: string) => `${BASE_URL}atlas-art/places/${slug}.webp`,
+  panel: (slug: string) => `${BASE_URL}atlas-art/panels/${slug}.webp`,
 };
 
 /** Map vignette, drawn around (0,0) with its base on y = 0. About 44 units wide. */

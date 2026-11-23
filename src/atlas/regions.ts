@@ -42,7 +42,8 @@ export const ART_REGIONS: readonly ArtRegion[] = [
 
 /** Formats probed for a region painting, in order. */
 export const REGION_ART_EXTENSIONS = ['webp', 'png', 'jpg'] as const;
-export const regionArtUrl = (id: string, ext: string) => `/atlas-art/regions/${id}.${ext}`;
+/** Served from the site's base ("/" locally, a subfolder on GitHub Pages). */
+export const regionArtUrl = (id: string, ext: string) => `${import.meta.env?.BASE_URL ?? '/'}atlas-art/regions/${id}.${ext}`;
 
 export const regionSize = (r: ArtRegion) => ({ width: r.bounds.x1 - r.bounds.x0, height: r.bounds.y1 - r.bounds.y0 });
 export const regionPixelSize = (r: ArtRegion) => {
