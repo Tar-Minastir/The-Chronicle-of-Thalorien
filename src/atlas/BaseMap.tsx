@@ -12,6 +12,7 @@ import type { Size, Viewport } from '../map/viewport';
 import { scaleOf } from '../map/viewport';
 import type { AtlasFeature } from './geography';
 import { WORLD, buildRaster, drawBase, type AtlasRaster, type BaseLayers } from './paint';
+import { loadRegionArt, type RegionArt } from './regionArt';
 import { artUrl, useArtwork } from './vignettes';
 
 /** Bitmap side in px for the 1000-unit world. 2048 keeps the painting sharp to about 4× zoom; trees take over beyond. */
@@ -32,6 +33,7 @@ export function BaseMap({ features, viewport, size, layers }: Props) {
   const [raster, setRaster] = useState<AtlasRaster | null>(null);
   const [stage, setStage] = useState('');
   const [painting, setPainting] = useState<HTMLImageElement | null>(null);
+  const [regionArt, setRegionArt] = useState<RegionArt[]>([]);
   const paintedUrl = useArtwork(artUrl.world);
   // Geometry is fixed per feature id, so the id list identifies a painting.
   const key = features.map((f) => f.id).join('|');
@@ -45,6 +47,14 @@ export function BaseMap({ features, viewport, size, layers }: Props) {
     img.onload = () => setPainting(img);
     img.src = paintedUrl;
   }, [paintedUrl]);
+
+  useEffect(() => {
+    let alive = true;
+    void loadRegionArt().then((list) => alive && list.length && setRegionArt(list));
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -81,18 +91,23 @@ export function BaseMap({ features, viewport, size, layers }: Props) {
     const s = scaleOf(viewport, size) * dpr;
     const ox = w / 2 - viewport.cx * s;
     const oy = h / 2 - viewport.cy * s;
+    ctx.imageSmoothingQuality = 'high';
     if (painting && layers.terrain) {
       ctx.clearRect(0, 0, w, h);
-      ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(painting, ox, oy, WORLD * s, WORLD * s);
-      return;
-    }
-    if (!raster) {
+    } else if (raster) {
+      drawBase(ctx, raster, layers, ox, oy, s, w, h);
+    } else {
       ctx.clearRect(0, 0, w, h);
-      return;
     }
-    drawBase(ctx, raster, layers, ox, oy, s, w, h);
-  }, [raster, painting, viewport, size, layers.terrain, layers.forests, layers.mountains, layers.waters]);
+    // Illustrated regions sit over whatever terrain is beneath them, in the same world space.
+    if (layers.terrain) {
+      for (const { region, image } of regionArt) {
+        const b = region.bounds;
+        ctx.drawImage(image, ox + b.x0 * s, oy + b.y0 * s, (b.x1 - b.x0) * s, (b.y1 - b.y0) * s);
+      }
+    }
+  }, [raster, painting, regionArt, viewport, size, layers.terrain, layers.forests, layers.mountains, layers.waters]);
 
   return (
     <>

@@ -372,3 +372,39 @@ download itself; behaviour with real image assets in the slots.
 4. Pinch zoom and a bottom-sheet dock on phones; fullscreen control.
 5. Deeper page design: quest objectives and clues as structured fields, NPC profile pages, cross-links between pages.
 6. Painting off the main thread and caching (carried over from 2B).
+---
+
+# Milestone 2D — geographical reference package for regional artwork
+
+Goal: prepare everything an external image generator needs to paint the terrain of one region, without changing
+the site's design. No artwork was generated.
+
+**Branch note:** `Third-` was created from `main` (milestone 1). It was fast-forwarded to `feature/fantasy-atlas`
+(commit "From Photo") with the user's approval so that it contains milestones 2-2C. Nothing was committed.
+
+**Added**
+- `src/atlas/regions.ts` — registry of illustrated regions (bounds, 5 px per world unit, feather). Single source of
+  truth for the guides and for placing the finished painting. First entry: `uchkeken-region`, x 80..920, y 290..850.
+- `src/atlas/regionArt.ts` + a few lines in `BaseMap.tsx` — probes `/atlas-art/regions/<id>.{webp,png,jpg}` and
+  draws a supplied painting over the procedural terrain at its world bounds, edges feathered. With no file present
+  the atlas renders exactly as before.
+- `scripts/regionGuide.ts` (pure builders) and `scripts/art-guides.ts` (`npm run art:guides`) — derive the package
+  from the gazetteer, `geography.ts`, `terrain.ts` and the terrain fields. Rasterised with headless Edge/Chrome.
+- `artwork-guides/uchkeken-region/` — `geography-guide.png`, `artwork-guide.png` (both 4200 x 2800),
+  `region-manifest.json`.
+- `docs/REGIONAL_ART_BRIEF.md` — the brief for the artist / image model, integration and expansion rules,
+  limitations.
+- `tests/regions.test.ts` — registry sanity, exact world<->pixel mapping, and that the committed manifest still
+  matches the geography data (fails when the guides are stale).
+
+**Findings**
+- No marker had been moved by the player (the stored user layer has no `markerOverrides`), so the guides use the
+  gazetteer's provisional positions. `--user-layer` applies moves; the app has no export button for the layer yet.
+- 14 of the 17 proposed additions fall inside the region. Painting them makes them permanent in the image.
+
+**Verification:** 165 tests pass, `tsc --noEmit` clean. The app was reloaded with the slot code in place and no
+region file: terrain unchanged. Not verified: the slot with a real painting, and the feathered seam between two
+regions.
+
+**Next:** generate the painting per the brief and place it at `public/atlas-art/regions/uchkeken-region.webp`;
+check alignment against `geography-guide.png`; then define the neighbouring regions (40-unit overlap).

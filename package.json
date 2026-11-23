@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "chronicle-of-thalorien",
   "private": true,
   "version": "0.1.0",
@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "import:report": "tsx scripts/import-report.ts"
+    "import:report": "tsx scripts/import-report.ts",
+    "art:guides": "tsx scripts/art-guides.ts"
   },
   "dependencies": {
     "react": "^19.3.1",

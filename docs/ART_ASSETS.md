@@ -14,6 +14,7 @@ used, otherwise the fallback is drawn. Missing files are normal and produce no e
 | Slot | Path | Replaces | Used by |
 |---|---|---|---|
 | World base map | `public/atlas-art/world.webp` | the whole procedural terrain painting | `BaseMap.tsx` |
+| Regional terrain | `public/atlas-art/regions/<id>.webp` (or .png / .jpg) | the terrain inside that region's bounds (see `docs/REGIONAL_ART_BRIEF.md`) | `BaseMap.tsx` via `regions.ts` |
 | Place vignette | `public/atlas-art/places/<slug>.webp` | that place's vector vignette on the map | `MapView.tsx` → `PlaceArtwork` |
 | Panel scene | `public/atlas-art/panels/<slug>.webp` | the sidebar illustration for that place | `LocationPreview.tsx` |
 

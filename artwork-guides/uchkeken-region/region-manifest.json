@@ -1,0 +1,4539 @@
+{
+  "schema": "thalorien.region-manifest/1",
+  "id": "uchkeken-region",
+  "title": "Uchkeken and the Heartlands",
+  "generator": "npm run art:guides (scripts/art-guides.ts)",
+  "provenance": {
+    "importerVersion": 2,
+    "documents": [
+      {
+        "file": "character-sheet.md",
+        "hash": "wuncfb77jo"
+      },
+      {
+        "file": "journal.md",
+        "hash": "292d7mpe40s"
+      },
+      {
+        "file": "campaign-chronicle.md",
+        "hash": "4qfo7exei9"
+      },
+      {
+        "file": "rulings-and-house-rules.md",
+        "hash": "1ukryu4q7c4"
+      }
+    ],
+    "userLayer": "none supplied: gazetteer positions and unedited atlas features"
+  },
+  "coordinateSystem": {
+    "name": "Thalorien atlas world space",
+    "extent": [
+      0,
+      0,
+      1000,
+      1000
+    ],
+    "axes": "x increases east, y increases south; north is up",
+    "scale": "none: the campaign documents state no distances precise enough to fix one",
+    "note": "One coordinate system is used by the gazetteer, the atlas geometry, both guide images and the finished artwork."
+  },
+  "bounds": {
+    "x0": 80,
+    "y0": 290,
+    "x1": 920,
+    "y1": 850,
+    "width": 840,
+    "height": 560,
+    "centre": [
+      500,
+      570
+    ]
+  },
+  "aspectRatio": "3:2",
+  "image": {
+    "width": 4200,
+    "height": 2800,
+    "pxPerWorldUnit": 5
+  },
+  "transform": {
+    "worldToPixel": {
+      "px": "(x - 80) * 5",
+      "py": "(y - 290) * 5",
+      "matrix": [
+        5,
+        0,
+        0,
+        5,
+        -400,
+        -1450
+      ]
+    },
+    "pixelToWorld": {
+      "x": "px / 5 + 80",
+      "y": "py / 5 + 290",
+      "matrix": [
+        0.2,
+        0,
+        0,
+        0.2,
+        80,
+        290
+      ]
+    },
+    "note": "Affine, axis-aligned, no rotation. Pixel (0, 0) is the top-left corner of the top-left pixel. Valid for any uniformly resized copy after dividing by the resize factor."
+  },
+  "files": {
+    "geographyGuide": "geography-guide.png",
+    "artworkGuide": "artwork-guide.png",
+    "manifest": "region-manifest.json",
+    "finishedArtworkSlot": "public/atlas-art/regions/uchkeken-region.webp (or .png / .jpg)"
+  },
+  "canonCategories": {
+    "confirmed-canon": "Stated in the four authorized campaign documents: that the place exists, its name, and the quoted relations between places.",
+    "atlas-interpretation": "The atlas giving a confirmed fact a drawable form: every coordinate, outline, extent, river course and ridgeline. Not canon.",
+    "proposed-atlas-addition": "Invented by the atlas for a coherent world; awaiting the Dungeon Master. Not canon, removable by the player."
+  },
+  "userAdjustedPositions": [],
+  "anchors": [
+    {
+      "id": "location:uchkeken",
+      "name": "Uchkeken",
+      "kind": "region",
+      "tier": 0,
+      "primary": true,
+      "world": [
+        500,
+        606
+      ],
+      "pixel": [
+        2100,
+        1580
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 4,
+          "endLine": 4
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 8,
+          "endLine": 8
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 11,
+          "endLine": 11
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 13,
+          "endLine": 13
+        }
+      ],
+      "mentionCount": 45
+    },
+    {
+      "id": "location:heart-of-uchkeken",
+      "name": "The heart of Uchkeken",
+      "kind": "site",
+      "tier": 1,
+      "primary": false,
+      "parent": "location:uchkeken",
+      "world": [
+        520,
+        640
+      ],
+      "pixel": [
+        2200,
+        1750
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, consistent with stated relations",
+        "userAdjusted": false
+      },
+      "statedRelations": [
+        {
+          "kind": "within",
+          "target": "location:uchkeken",
+          "bearing": null,
+          "quote": "heart of Uchkeken",
+          "certainty": "stated"
+        }
+      ],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 76,
+          "endLine": 76
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 171,
+          "endLine": 171
+        },
+        {
+          "file": "journal.md",
+          "line": 138,
+          "endLine": 138
+        },
+        {
+          "file": "journal.md",
+          "line": 144,
+          "endLine": 144
+        }
+      ],
+      "mentionCount": 5
+    },
+    {
+      "id": "location:thornwall",
+      "name": "The Thornwall",
+      "kind": "site",
+      "tier": 1,
+      "primary": false,
+      "parent": "location:uchkeken",
+      "world": [
+        498,
+        662
+      ],
+      "pixel": [
+        2090,
+        1860
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, consistent with stated relations",
+        "userAdjusted": false
+      },
+      "statedRelations": [
+        {
+          "kind": "within",
+          "target": "location:uchkeken",
+          "bearing": null,
+          "quote": "the Thornwall blossomed white along three leagues",
+          "certainty": "inferred"
+        }
+      ],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 76,
+          "endLine": 76
+        },
+        {
+          "file": "journal.md",
+          "line": 145,
+          "endLine": 145
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 36,
+          "endLine": 36
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 119,
+          "endLine": 119
+        }
+      ],
+      "mentionCount": 9
+    },
+    {
+      "id": "location:bough-house",
+      "name": "The Bough-House",
+      "kind": "site",
+      "tier": 2,
+      "primary": false,
+      "parent": "location:uchkeken",
+      "world": [
+        532,
+        652
+      ],
+      "pixel": [
+        2260,
+        1810
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, consistent with stated relations",
+        "userAdjusted": false
+      },
+      "statedRelations": [
+        {
+          "kind": "bearing",
+          "target": "location:heart-of-uchkeken",
+          "bearing": "SE",
+          "quote": "1.5 miles south-east of the heart",
+          "certainty": "stated"
+        }
+      ],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 76,
+          "endLine": 76
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 155,
+          "endLine": 155
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 186,
+          "endLine": 186
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 203,
+          "endLine": 203
+        }
+      ],
+      "mentionCount": 10
+    },
+    {
+      "id": "location:elendrath",
+      "name": "Elendrath",
+      "kind": "region",
+      "tier": 0,
+      "primary": true,
+      "world": [
+        186,
+        604
+      ],
+      "pixel": [
+        530,
+        1570
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 8,
+          "endLine": 8
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 16,
+          "endLine": 16
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 76,
+          "endLine": 76
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 169,
+          "endLine": 169
+        }
+      ],
+      "mentionCount": 17
+    },
+    {
+      "id": "location:moon-well",
+      "name": "The Moon-Well",
+      "kind": "site",
+      "tier": 1,
+      "primary": false,
+      "parent": "location:elendrath",
+      "world": [
+        152,
+        656
+      ],
+      "pixel": [
+        360,
+        1830
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, consistent with stated relations",
+        "userAdjusted": false
+      },
+      "statedRelations": [
+        {
+          "kind": "within",
+          "target": "location:elendrath",
+          "bearing": null,
+          "quote": "a crescent moon in a well (Elendrath)",
+          "certainty": "stated"
+        },
+        {
+          "kind": "bearing",
+          "target": "location:heart-of-uchkeken",
+          "bearing": "W",
+          "quote": "the Moon-Well (still, sleeps well, west)",
+          "certainty": "stated"
+        }
+      ],
+      "sources": [
+        {
+          "file": "journal.md",
+          "line": 30,
+          "endLine": 30
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 37,
+          "endLine": 37
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 70,
+          "endLine": 70
+        },
+        {
+          "file": "rulings-and-house-rules.md",
+          "line": 44,
+          "endLine": 44
+        }
+      ],
+      "mentionCount": 4
+    },
+    {
+      "id": "location:ithilmar",
+      "name": "Ithilmar",
+      "kind": "settlement",
+      "tier": 1,
+      "primary": false,
+      "parent": "location:elendrath",
+      "world": [
+        212,
+        636
+      ],
+      "pixel": [
+        660,
+        1730
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, consistent with stated relations",
+        "userAdjusted": false
+      },
+      "statedRelations": [
+        {
+          "kind": "within",
+          "target": "location:elendrath",
+          "bearing": null,
+          "quote": "Queen Aelindra's chamber in Ithilmar",
+          "certainty": "inferred"
+        }
+      ],
+      "sources": [
+        {
+          "file": "journal.md",
+          "line": 147,
+          "endLine": 147
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 44,
+          "endLine": 44
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 167,
+          "endLine": 167
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 189,
+          "endLine": 189
+        }
+      ],
+      "mentionCount": 4
+    },
+    {
+      "id": "location:silverwood",
+      "name": "The Silverwood",
+      "kind": "region",
+      "tier": 1,
+      "primary": false,
+      "world": [
+        300,
+        652
+      ],
+      "pixel": [
+        1100,
+        1810
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 16,
+          "endLine": 16
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 76,
+          "endLine": 76
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 96,
+          "endLine": 96
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 182,
+          "endLine": 182
+        }
+      ],
+      "mentionCount": 11
+    },
+    {
+      "id": "location:greyfold",
+      "name": "Greyfold",
+      "kind": "settlement",
+      "tier": 1,
+      "primary": false,
+      "world": [
+        400,
+        660
+      ],
+      "pixel": [
+        1600,
+        1850
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 76,
+          "endLine": 76
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 192,
+          "endLine": 192
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 209,
+          "endLine": 209
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 59,
+          "endLine": 59
+        }
+      ],
+      "mentionCount": 9
+    },
+    {
+      "id": "location:moonroad",
+      "name": "The Moonroad",
+      "kind": "route",
+      "tier": 2,
+      "primary": false,
+      "world": [
+        285,
+        606
+      ],
+      "pixel": [
+        1025,
+        1580
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "campaign-chronicle.md",
+          "line": 167,
+          "endLine": 167
+        }
+      ],
+      "mentionCount": 1
+    },
+    {
+      "id": "location:northern-fells",
+      "name": "The Northern Fells",
+      "kind": "region",
+      "tier": 1,
+      "primary": false,
+      "world": [
+        770,
+        305
+      ],
+      "pixel": [
+        3450,
+        75
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 8,
+          "endLine": 8
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 184,
+          "endLine": 184
+        }
+      ],
+      "mentionCount": 2
+    },
+    {
+      "id": "location:grey-step",
+      "name": "The Grey Step",
+      "kind": "site",
+      "tier": 1,
+      "primary": false,
+      "world": [
+        690,
+        381
+      ],
+      "pixel": [
+        3050,
+        455
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 165,
+          "endLine": 165
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 185,
+          "endLine": 185
+        },
+        {
+          "file": "journal.md",
+          "line": 176,
+          "endLine": 176
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 14,
+          "endLine": 14
+        }
+      ],
+      "mentionCount": 8
+    },
+    {
+      "id": "location:nindor",
+      "name": "The Nindor",
+      "kind": "water",
+      "tier": 2,
+      "primary": false,
+      "world": [
+        748,
+        322
+      ],
+      "pixel": [
+        3340,
+        160
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 184,
+          "endLine": 184
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 185,
+          "endLine": 185
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 14,
+          "endLine": 14
+        }
+      ],
+      "mentionCount": 3
+    },
+    {
+      "id": "location:harrowmere",
+      "name": "Harrowmere",
+      "kind": "settlement",
+      "tier": 0,
+      "primary": true,
+      "world": [
+        400,
+        470
+      ],
+      "pixel": [
+        1600,
+        900
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 76,
+          "endLine": 76
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 96,
+          "endLine": 96
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 156,
+          "endLine": 156
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 167,
+          "endLine": 167
+        }
+      ],
+      "mentionCount": 8
+    },
+    {
+      "id": "location:dun-ommar",
+      "name": "Dun Ommar",
+      "kind": "settlement",
+      "tier": 0,
+      "primary": true,
+      "world": [
+        720,
+        470
+      ],
+      "pixel": [
+        3200,
+        900
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, consistent with stated relations",
+        "userAdjusted": false
+      },
+      "statedRelations": [
+        {
+          "kind": "bearing",
+          "target": "location:harrowmere",
+          "bearing": "E",
+          "quote": "the Mask east to Dun Ommar",
+          "certainty": "stated"
+        }
+      ],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 4,
+          "endLine": 4
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 76,
+          "endLine": 76
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 198,
+          "endLine": 198
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 207,
+          "endLine": 207
+        }
+      ],
+      "mentionCount": 33
+    },
+    {
+      "id": "location:deep-anvil",
+      "name": "The Deep Anvil",
+      "kind": "site",
+      "tier": 1,
+      "primary": false,
+      "parent": "location:dun-ommar",
+      "world": [
+        752,
+        508
+      ],
+      "pixel": [
+        3360,
+        1090
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, consistent with stated relations",
+        "userAdjusted": false
+      },
+      "statedRelations": [
+        {
+          "kind": "within",
+          "target": "location:dun-ommar",
+          "bearing": null,
+          "quote": "the Deep Anvil of Dun Ommar",
+          "certainty": "stated"
+        }
+      ],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 110,
+          "endLine": 110
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 114,
+          "endLine": 114
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 132,
+          "endLine": 132
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 172,
+          "endLine": 172
+        }
+      ],
+      "mentionCount": 17
+    },
+    {
+      "id": "location:ironway",
+      "name": "The Ironway",
+      "kind": "route",
+      "tier": 1,
+      "primary": false,
+      "world": [
+        530,
+        492
+      ],
+      "pixel": [
+        2250,
+        1010
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "journal.md",
+          "line": 32,
+          "endLine": 32
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 37,
+          "endLine": 37
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 45,
+          "endLine": 45
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 46,
+          "endLine": 46
+        }
+      ],
+      "mentionCount": 6
+    },
+    {
+      "id": "location:toll-stone",
+      "name": "The Toll-stone",
+      "kind": "site",
+      "tier": 1,
+      "primary": false,
+      "world": [
+        610,
+        502
+      ],
+      "pixel": [
+        2650,
+        1060
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 208,
+          "endLine": 208
+        },
+        {
+          "file": "journal.md",
+          "line": 81,
+          "endLine": 81
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 46,
+          "endLine": 46
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 57,
+          "endLine": 57
+        }
+      ],
+      "mentionCount": 7
+    },
+    {
+      "id": "location:cinder-gorge",
+      "name": "The Cinder Gorge",
+      "kind": "site",
+      "tier": 0,
+      "primary": true,
+      "world": [
+        610,
+        455
+      ],
+      "pixel": [
+        2650,
+        825
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, consistent with stated relations",
+        "userAdjusted": false
+      },
+      "statedRelations": [
+        {
+          "kind": "bearing",
+          "target": "location:toll-stone",
+          "bearing": "N",
+          "quote": "three leagues north of the Toll-stone",
+          "certainty": "stated"
+        }
+      ],
+      "sources": [
+        {
+          "file": "journal.md",
+          "line": 7,
+          "endLine": 7
+        },
+        {
+          "file": "journal.md",
+          "line": 56,
+          "endLine": 56
+        },
+        {
+          "file": "journal.md",
+          "line": 170,
+          "endLine": 170
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 45,
+          "endLine": 45
+        }
+      ],
+      "mentionCount": 11
+    },
+    {
+      "id": "location:deephold-gate",
+      "name": "Deephold Gate",
+      "kind": "site",
+      "tier": 2,
+      "primary": false,
+      "world": [
+        780,
+        532
+      ],
+      "pixel": [
+        3500,
+        1210
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 14,
+          "endLine": 14
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 205,
+          "endLine": 205
+        },
+        {
+          "file": "journal.md",
+          "line": 63,
+          "endLine": 63
+        },
+        {
+          "file": "journal.md",
+          "line": 91,
+          "endLine": 91
+        }
+      ],
+      "mentionCount": 7
+    },
+    {
+      "id": "location:harrow",
+      "name": "The Harrow",
+      "kind": "region",
+      "tier": 1,
+      "primary": false,
+      "world": [
+        630,
+        592
+      ],
+      "pixel": [
+        2750,
+        1510
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 132,
+          "endLine": 132
+        },
+        {
+          "file": "journal.md",
+          "line": 176,
+          "endLine": 176
+        },
+        {
+          "file": "journal.md",
+          "line": 185,
+          "endLine": 185
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 48,
+          "endLine": 48
+        }
+      ],
+      "mentionCount": 6
+    },
+    {
+      "id": "location:senn",
+      "name": "The Senn",
+      "kind": "water",
+      "tier": 2,
+      "primary": false,
+      "world": [
+        545,
+        468
+      ],
+      "pixel": [
+        2325,
+        890
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 8,
+          "endLine": 8
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 57,
+          "endLine": 57
+        }
+      ],
+      "mentionCount": 2
+    },
+    {
+      "id": "location:aranthal",
+      "name": "Aranthal",
+      "kind": "settlement",
+      "tier": 0,
+      "primary": true,
+      "world": [
+        250,
+        760
+      ],
+      "pixel": [
+        850,
+        2350
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 8,
+          "endLine": 8
+        },
+        {
+          "file": "character-sheet.md",
+          "line": 200,
+          "endLine": 200
+        },
+        {
+          "file": "journal.md",
+          "line": 198,
+          "endLine": 198
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 48,
+          "endLine": 48
+        }
+      ],
+      "mentionCount": 6
+    },
+    {
+      "id": "location:sennhold",
+      "name": "The Sennhold",
+      "kind": "site",
+      "tier": 2,
+      "primary": false,
+      "world": [
+        243,
+        768
+      ],
+      "pixel": [
+        815,
+        2390
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "campaign-chronicle.md",
+          "line": 167,
+          "endLine": 167
+        }
+      ],
+      "mentionCount": 1
+    },
+    {
+      "id": "location:elsmere",
+      "name": "Elsmere",
+      "kind": "region",
+      "tier": 1,
+      "primary": false,
+      "world": [
+        292,
+        722
+      ],
+      "pixel": [
+        1060,
+        2160
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "campaign-chronicle.md",
+          "line": 34,
+          "endLine": 34
+        },
+        {
+          "file": "rulings-and-house-rules.md",
+          "line": 42,
+          "endLine": 42
+        }
+      ],
+      "mentionCount": 2
+    },
+    {
+      "id": "location:foxhollow",
+      "name": "Foxhollow",
+      "kind": "settlement",
+      "tier": 1,
+      "primary": false,
+      "world": [
+        302,
+        810
+      ],
+      "pixel": [
+        1110,
+        2600
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 190,
+          "endLine": 190
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 167,
+          "endLine": 167
+        }
+      ],
+      "mentionCount": 2
+    },
+    {
+      "id": "location:willowford",
+      "name": "The Willowford",
+      "kind": "site",
+      "tier": 2,
+      "primary": false,
+      "world": [
+        200,
+        480
+      ],
+      "pixel": [
+        600,
+        950
+      ],
+      "canon": "confirmed-canon",
+      "position": {
+        "canon": "atlas-interpretation",
+        "basis": "provisional, no stated position",
+        "userAdjusted": false
+      },
+      "statedRelations": [],
+      "sources": [
+        {
+          "file": "character-sheet.md",
+          "line": 8,
+          "endLine": 8
+        },
+        {
+          "file": "campaign-chronicle.md",
+          "line": 101,
+          "endLine": 101
+        }
+      ],
+      "mentionCount": 2
+    }
+  ],
+  "terrainRegions": [
+    {
+      "id": "atlas:uchkeken-wood",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The ancient wood of Uchkeken. Drawn fire-scarred, because the documents speak of burnt stumps and burnt hills; its bounds are the atlas’s.",
+      "basisQuotes": [
+        "hidden elven wood",
+        "burnt hills north",
+        "among the burnt stumps beyond the White Tree"
+      ],
+      "nearPlaces": [
+        "uchkeken"
+      ],
+      "extendsBeyondBounds": false,
+      "type": "forest",
+      "tone": "scarred",
+      "polygon": [
+        [
+          436,
+          572
+        ],
+        [
+          498,
+          548
+        ],
+        [
+          566,
+          562
+        ],
+        [
+          596,
+          620
+        ],
+        [
+          580,
+          684
+        ],
+        [
+          522,
+          712
+        ],
+        [
+          452,
+          700
+        ],
+        [
+          422,
+          642
+        ]
+      ],
+      "polygonPixels": [
+        [
+          1780,
+          1410
+        ],
+        [
+          2090,
+          1290
+        ],
+        [
+          2430,
+          1360
+        ],
+        [
+          2580,
+          1650
+        ],
+        [
+          2500,
+          1970
+        ],
+        [
+          2210,
+          2110
+        ],
+        [
+          1860,
+          2050
+        ],
+        [
+          1710,
+          1760
+        ]
+      ],
+      "edgeNote": "Authored outline. The atlas draws the edge irregularly, within about 22 world units of this polygon."
+    },
+    {
+      "id": "atlas:silverwood",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The Silverwood. Drawn as a great wood on the strength of its name alone; nothing is recorded of its extent.",
+      "basisQuotes": [],
+      "basisNote": "Rests on the place name alone.",
+      "nearPlaces": [
+        "silverwood",
+        "elendrath"
+      ],
+      "extendsBeyondBounds": false,
+      "type": "forest",
+      "tone": "silver",
+      "polygon": [
+        [
+          190,
+          560
+        ],
+        [
+          292,
+          540
+        ],
+        [
+          372,
+          566
+        ],
+        [
+          404,
+          628
+        ],
+        [
+          388,
+          702
+        ],
+        [
+          322,
+          734
+        ],
+        [
+          240,
+          724
+        ],
+        [
+          196,
+          676
+        ],
+        [
+          184,
+          612
+        ]
+      ],
+      "polygonPixels": [
+        [
+          550,
+          1350
+        ],
+        [
+          1060,
+          1250
+        ],
+        [
+          1460,
+          1380
+        ],
+        [
+          1620,
+          1690
+        ],
+        [
+          1540,
+          2060
+        ],
+        [
+          1210,
+          2220
+        ],
+        [
+          800,
+          2170
+        ],
+        [
+          580,
+          1930
+        ],
+        [
+          520,
+          1610
+        ]
+      ],
+      "edgeNote": "Authored outline. The atlas draws the edge irregularly, within about 22 world units of this polygon."
+    },
+    {
+      "id": "atlas:the-harrow",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The Harrow: shepherds’ country with peat. Drawn as open heath.",
+      "basisQuotes": [
+        "Harrow shepherds",
+        "Harrow peat"
+      ],
+      "nearPlaces": [
+        "harrow"
+      ],
+      "extendsBeyondBounds": false,
+      "type": "heath",
+      "polygon": [
+        [
+          580,
+          560
+        ],
+        [
+          650,
+          548
+        ],
+        [
+          700,
+          585
+        ],
+        [
+          690,
+          640
+        ],
+        [
+          620,
+          650
+        ],
+        [
+          575,
+          610
+        ]
+      ],
+      "polygonPixels": [
+        [
+          2500,
+          1350
+        ],
+        [
+          2850,
+          1290
+        ],
+        [
+          3100,
+          1475
+        ],
+        [
+          3050,
+          1750
+        ],
+        [
+          2700,
+          1800
+        ],
+        [
+          2475,
+          1600
+        ]
+      ],
+      "edgeNote": "Authored outline. The atlas draws the edge irregularly, within about 22 world units of this polygon."
+    },
+    {
+      "id": "atlas:sarnmoor",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The Sarnmoor, drawn as moorland on the strength of its name.",
+      "basisQuotes": [],
+      "basisNote": "Rests on the place name alone.",
+      "nearPlaces": [
+        "sarnmoor"
+      ],
+      "extendsBeyondBounds": true,
+      "type": "heath",
+      "polygon": [
+        [
+          300,
+          835
+        ],
+        [
+          360,
+          826
+        ],
+        [
+          400,
+          860
+        ],
+        [
+          385,
+          900
+        ],
+        [
+          320,
+          905
+        ],
+        [
+          290,
+          870
+        ]
+      ],
+      "polygonPixels": [
+        [
+          1100,
+          2725
+        ],
+        [
+          1400,
+          2680
+        ],
+        [
+          1600,
+          2850
+        ],
+        [
+          1525,
+          3050
+        ],
+        [
+          1200,
+          3075
+        ],
+        [
+          1050,
+          2900
+        ]
+      ],
+      "edgeNote": "Authored outline. The atlas draws the edge irregularly, within about 22 world units of this polygon."
+    },
+    {
+      "id": "atlas:alderwilds",
+      "name": "The Alderwilds",
+      "canon": "proposed-atlas-addition",
+      "description": "Wet alder and willow woodland between Harrowmere and the Willowford.",
+      "nearPlaces": [
+        "harrowmere",
+        "willowford"
+      ],
+      "relation": "West of Harrowmere, east of the Willowford.",
+      "extendsBeyondBounds": false,
+      "type": "forest",
+      "tone": "green",
+      "polygon": [
+        [
+          236,
+          372
+        ],
+        [
+          300,
+          356
+        ],
+        [
+          346,
+          392
+        ],
+        [
+          338,
+          440
+        ],
+        [
+          280,
+          462
+        ],
+        [
+          232,
+          430
+        ]
+      ],
+      "polygonPixels": [
+        [
+          780,
+          410
+        ],
+        [
+          1100,
+          330
+        ],
+        [
+          1330,
+          510
+        ],
+        [
+          1290,
+          750
+        ],
+        [
+          1000,
+          860
+        ],
+        [
+          760,
+          700
+        ]
+      ],
+      "edgeNote": "Authored outline. The atlas draws the edge irregularly, within about 22 world units of this polygon."
+    },
+    {
+      "id": "atlas:eastmere-forest",
+      "name": "Eastmere Forest",
+      "canon": "proposed-atlas-addition",
+      "description": "A broad lowland forest in the south-east, unvisited and unremarked in the record.",
+      "nearPlaces": [
+        "harrow",
+        "deephold-gate"
+      ],
+      "relation": "South-east of the Harrow.",
+      "extendsBeyondBounds": false,
+      "type": "forest",
+      "tone": "green",
+      "polygon": [
+        [
+          760,
+          668
+        ],
+        [
+          840,
+          650
+        ],
+        [
+          900,
+          700
+        ],
+        [
+          892,
+          770
+        ],
+        [
+          820,
+          792
+        ],
+        [
+          756,
+          748
+        ]
+      ],
+      "polygonPixels": [
+        [
+          3400,
+          1890
+        ],
+        [
+          3800,
+          1800
+        ],
+        [
+          4100,
+          2050
+        ],
+        [
+          4060,
+          2400
+        ],
+        [
+          3700,
+          2510
+        ],
+        [
+          3380,
+          2290
+        ]
+      ],
+      "edgeNote": "Authored outline. The atlas draws the edge irregularly, within about 22 world units of this polygon."
+    },
+    {
+      "id": "atlas:southing-wood",
+      "name": "The Southing Wood",
+      "canon": "proposed-atlas-addition",
+      "description": "Woodland south of the long hills. Proposed as the country a place called the Singing Glade might lie beside.",
+      "nearPlaces": [
+        "ennor-luth"
+      ],
+      "relation": "East of Ennor-Lûth, south of the long hills.",
+      "extendsBeyondBounds": true,
+      "type": "forest",
+      "tone": "green",
+      "polygon": [
+        [
+          590,
+          862
+        ],
+        [
+          668,
+          846
+        ],
+        [
+          720,
+          888
+        ],
+        [
+          700,
+          948
+        ],
+        [
+          626,
+          958
+        ],
+        [
+          580,
+          916
+        ]
+      ],
+      "polygonPixels": [
+        [
+          2550,
+          2860
+        ],
+        [
+          2940,
+          2780
+        ],
+        [
+          3200,
+          2990
+        ],
+        [
+          3100,
+          3290
+        ],
+        [
+          2730,
+          3340
+        ],
+        [
+          2500,
+          3130
+        ]
+      ],
+      "edgeNote": "Authored outline. The atlas draws the edge irregularly, within about 22 world units of this polygon."
+    }
+  ],
+  "ridgelines": [
+    {
+      "id": "atlas:kharun-massif",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The mountain of Kharûn, drawn as a massif. The documents give it a peak; the range around it is interpolation.",
+      "basisQuotes": [
+        "under Kharûn's peak"
+      ],
+      "nearPlaces": [
+        "kharun"
+      ],
+      "extendsBeyondBounds": true,
+      "type": "mountains",
+      "relief": 1,
+      "halfWidth": 36,
+      "snowy": true,
+      "points": [
+        [
+          300,
+          256
+        ],
+        [
+          352,
+          236
+        ],
+        [
+          405,
+          228
+        ],
+        [
+          458,
+          240
+        ],
+        [
+          512,
+          266
+        ]
+      ],
+      "pixels": [
+        [
+          1100,
+          -170
+        ],
+        [
+          1360,
+          -270
+        ],
+        [
+          1625,
+          -310
+        ],
+        [
+          1890,
+          -250
+        ],
+        [
+          2160,
+          -120
+        ]
+      ]
+    },
+    {
+      "id": "atlas:pass-west",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "Western shoulder of the pass crossed on the way north from Harrowmere. Only the pass itself is recorded.",
+      "basisQuotes": [
+        "The pass; the Ashen Waste"
+      ],
+      "nearPlaces": [
+        "kharun",
+        "harrowmere"
+      ],
+      "extendsBeyondBounds": false,
+      "type": "mountains",
+      "relief": 0.55,
+      "halfWidth": 24,
+      "snowy": false,
+      "points": [
+        [
+          318,
+          322
+        ],
+        [
+          384,
+          331
+        ]
+      ],
+      "pixels": [
+        [
+          1190,
+          160
+        ],
+        [
+          1520,
+          205
+        ]
+      ]
+    },
+    {
+      "id": "atlas:pass-east",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "Eastern shoulder of the same pass.",
+      "basisQuotes": [
+        "The pass; the Ashen Waste"
+      ],
+      "nearPlaces": [
+        "kharun",
+        "harrowmere"
+      ],
+      "extendsBeyondBounds": false,
+      "type": "mountains",
+      "relief": 0.6,
+      "halfWidth": 26,
+      "snowy": false,
+      "points": [
+        [
+          430,
+          331
+        ],
+        [
+          500,
+          313
+        ],
+        [
+          566,
+          297
+        ]
+      ],
+      "pixels": [
+        [
+          1750,
+          205
+        ],
+        [
+          2100,
+          115
+        ],
+        [
+          2430,
+          35
+        ]
+      ]
+    },
+    {
+      "id": "atlas:northern-fells",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The high fells of the north-east, beyond the Ironway, where Taur-Galen stands.",
+      "basisQuotes": [
+        "the high fells"
+      ],
+      "nearPlaces": [
+        "northern-fells",
+        "taur-galen"
+      ],
+      "extendsBeyondBounds": true,
+      "type": "mountains",
+      "relief": 0.7,
+      "halfWidth": 40,
+      "snowy": false,
+      "points": [
+        [
+          628,
+          338
+        ],
+        [
+          690,
+          308
+        ],
+        [
+          752,
+          293
+        ],
+        [
+          812,
+          264
+        ],
+        [
+          880,
+          238
+        ],
+        [
+          956,
+          230
+        ]
+      ],
+      "pixels": [
+        [
+          2740,
+          240
+        ],
+        [
+          3050,
+          90
+        ],
+        [
+          3360,
+          15
+        ],
+        [
+          3660,
+          -130
+        ],
+        [
+          4000,
+          -260
+        ],
+        [
+          4380,
+          -300
+        ]
+      ]
+    },
+    {
+      "id": "atlas:long-hills",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The long hills that lie between Uchkeken and Ennor-Lûth.",
+      "basisQuotes": [
+        "beyond the long hills"
+      ],
+      "nearPlaces": [
+        "ennor-luth",
+        "uchkeken"
+      ],
+      "extendsBeyondBounds": false,
+      "type": "hills",
+      "relief": 0.34,
+      "halfWidth": 34,
+      "snowy": false,
+      "points": [
+        [
+          360,
+          772
+        ],
+        [
+          450,
+          792
+        ],
+        [
+          545,
+          782
+        ],
+        [
+          650,
+          800
+        ],
+        [
+          742,
+          790
+        ]
+      ],
+      "pixels": [
+        [
+          1400,
+          2410
+        ],
+        [
+          1850,
+          2510
+        ],
+        [
+          2325,
+          2460
+        ],
+        [
+          2850,
+          2550
+        ],
+        [
+          3310,
+          2500
+        ]
+      ]
+    },
+    {
+      "id": "atlas:willow-hills",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "Hill-country west of the Willowford.",
+      "basisQuotes": [
+        "hill-country west of the Willowford"
+      ],
+      "nearPlaces": [
+        "willowford"
+      ],
+      "extendsBeyondBounds": false,
+      "type": "hills",
+      "relief": 0.3,
+      "halfWidth": 30,
+      "snowy": false,
+      "points": [
+        [
+          86,
+          428
+        ],
+        [
+          132,
+          460
+        ],
+        [
+          122,
+          510
+        ]
+      ],
+      "pixels": [
+        [
+          30,
+          690
+        ],
+        [
+          260,
+          850
+        ],
+        [
+          210,
+          1100
+        ]
+      ]
+    },
+    {
+      "id": "atlas:grey-shoulders",
+      "name": "The Grey Shoulders",
+      "canon": "proposed-atlas-addition",
+      "description": "A lower western arm of the Kharûn heights, bare grey rock above the tree line.",
+      "nearPlaces": [
+        "kharun"
+      ],
+      "relation": "Runs west from the Kharûn massif.",
+      "extendsBeyondBounds": true,
+      "type": "mountains",
+      "relief": 0.7,
+      "halfWidth": 30,
+      "snowy": false,
+      "points": [
+        [
+          96,
+          236
+        ],
+        [
+          170,
+          262
+        ],
+        [
+          240,
+          250
+        ],
+        [
+          300,
+          256
+        ]
+      ],
+      "pixels": [
+        [
+          80,
+          -270
+        ],
+        [
+          450,
+          -140
+        ],
+        [
+          800,
+          -200
+        ],
+        [
+          1100,
+          -170
+        ]
+      ]
+    },
+    {
+      "id": "atlas:anvil-heights",
+      "name": "The Anvil Heights",
+      "canon": "proposed-atlas-addition",
+      "description": "Steep heights behind Dun Ommar. Proposed as the rock a dwarf-hold with a thousand-step stair would be cut into.",
+      "nearPlaces": [
+        "dun-ommar",
+        "deephold-gate"
+      ],
+      "relation": "East of Dun Ommar, running north to south.",
+      "extendsBeyondBounds": false,
+      "type": "mountains",
+      "relief": 0.7,
+      "halfWidth": 30,
+      "snowy": false,
+      "points": [
+        [
+          792,
+          398
+        ],
+        [
+          828,
+          462
+        ],
+        [
+          844,
+          540
+        ],
+        [
+          814,
+          614
+        ]
+      ],
+      "pixels": [
+        [
+          3560,
+          540
+        ],
+        [
+          3740,
+          860
+        ],
+        [
+          3820,
+          1250
+        ],
+        [
+          3670,
+          1620
+        ]
+      ]
+    }
+  ],
+  "rivers": [
+    {
+      "id": "atlas:nindor",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The river Nindor. Recorded: one goes north-east up it from the Grey Step to the Three Cairns. Its course below the Grey Step is the atlas’s guess.",
+      "basisQuotes": [
+        "the river Nindor",
+        "from the Grey Step, NE up the Nindor 4 days"
+      ],
+      "nearPlaces": [
+        "nindor",
+        "grey-step",
+        "three-cairns"
+      ],
+      "extendsBeyondBounds": true,
+      "halfWidth": 2.4,
+      "points": [
+        [
+          834,
+          238
+        ],
+        [
+          806,
+          272
+        ],
+        [
+          770,
+          312
+        ],
+        [
+          735,
+          346
+        ],
+        [
+          696,
+          386
+        ],
+        [
+          668,
+          426
+        ],
+        [
+          656,
+          474
+        ],
+        [
+          632,
+          520
+        ],
+        [
+          590,
+          544
+        ],
+        [
+          522,
+          522
+        ]
+      ],
+      "pixels": [
+        [
+          3770,
+          -260
+        ],
+        [
+          3630,
+          -90
+        ],
+        [
+          3450,
+          110
+        ],
+        [
+          3275,
+          280
+        ],
+        [
+          3080,
+          480
+        ],
+        [
+          2940,
+          680
+        ],
+        [
+          2880,
+          920
+        ],
+        [
+          2760,
+          1150
+        ],
+        [
+          2550,
+          1270
+        ],
+        [
+          2210,
+          1160
+        ]
+      ],
+      "course": [
+        [
+          834,
+          238
+        ],
+        [
+          832.229,
+          240.857
+        ],
+        [
+          829.323,
+          244.106
+        ],
+        [
+          825.691,
+          247.822
+        ],
+        [
+          821.792,
+          252.123
+        ],
+        [
+          817.261,
+          256.447
+        ],
+        [
+          812.549,
+          260.906
+        ],
+        [
+          808.714,
+          266.11
+        ],
+        [
+          805.548,
+          271.594
+        ],
+        [
+          802.093,
+          276.949
+        ],
+        [
+          797.804,
+          281.957
+        ],
+        [
+          793.303,
+          287.059
+        ],
+        [
+          788.695,
+          292.232
+        ],
+        [
+          783.885,
+          297.272
+        ],
+        [
+          778.568,
+          301.787
+        ],
+        [
+          773.332,
+          306.189
+        ],
+        [
+          768.683,
+          310.644
+        ],
+        [
+          763.615,
+          314.448
+        ],
+        [
+          758.578,
+          318.007
+        ],
+        [
+          754.372,
+          322.243
+        ],
+        [
+          752.183,
+          328.481
+        ],
+        [
+          750.304,
+          335.061
+        ],
+        [
+          746.525,
+          339.81
+        ],
+        [
+          740.351,
+          342.319
+        ],
+        [
+          733.536,
+          344.573
+        ],
+        [
+          727.948,
+          348.477
+        ],
+        [
+          722.965,
+          353.327
+        ],
+        [
+          717.854,
+          358.288
+        ],
+        [
+          712.736,
+          363.357
+        ],
+        [
+          709.002,
+          369.768
+        ],
+        [
+          706.257,
+          377.016
+        ],
+        [
+          702.707,
+          383.232
+        ],
+        [
+          697.323,
+          386.926
+        ],
+        [
+          690.629,
+          390.08
+        ],
+        [
+          685.051,
+          393.852
+        ],
+        [
+          681.339,
+          398.792
+        ],
+        [
+          678.035,
+          403.906
+        ],
+        [
+          674.828,
+          409.002
+        ],
+        [
+          671.805,
+          414.169
+        ],
+        [
+          669.38,
+          419.722
+        ],
+        [
+          666.978,
+          425.744
+        ],
+        [
+          665.332,
+          431.51
+        ],
+        [
+          665.379,
+          437.79
+        ],
+        [
+          665.552,
+          444.176
+        ],
+        [
+          664.399,
+          450.287
+        ],
+        [
+          662.346,
+          456.213
+        ],
+        [
+          660.208,
+          462.138
+        ],
+        [
+          658.274,
+          468.118
+        ],
+        [
+          654.844,
+          473.397
+        ],
+        [
+          651.031,
+          478.605
+        ],
+        [
+          648.391,
+          484.656
+        ],
+        [
+          646.95,
+          491.466
+        ],
+        [
+          645.493,
+          498.301
+        ],
+        [
+          642.764,
+          504.407
+        ],
+        [
+          638.222,
+          509.402
+        ],
+        [
+          633.02,
+          513.791
+        ],
+        [
+          630.042,
+          516.573
+        ],
+        [
+          625.912,
+          521.083
+        ],
+        [
+          621.615,
+          525.545
+        ],
+        [
+          617.005,
+          529.647
+        ],
+        [
+          612.282,
+          533.681
+        ],
+        [
+          607.366,
+          537.448
+        ],
+        [
+          601.875,
+          540.219
+        ],
+        [
+          595.72,
+          541.781
+        ],
+        [
+          590.584,
+          542.194
+        ],
+        [
+          582.88,
+          541.444
+        ],
+        [
+          573.977,
+          538.923
+        ],
+        [
+          564.303,
+          535.411
+        ],
+        [
+          554.234,
+          531.846
+        ],
+        [
+          544.263,
+          528.804
+        ],
+        [
+          535.141,
+          526.063
+        ],
+        [
+          527.546,
+          523.633
+        ],
+        [
+          522,
+          522
+        ]
+      ],
+      "courseNote": "The smoothed, meandering course the atlas and both guides draw (world units, 3 decimals)."
+    },
+    {
+      "id": "atlas:senn",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The Senn. Recorded: river-folk, a ford, and Aranthal’s river wards. That it runs from the northern spurs past Aranthal to the sea is interpolation.",
+      "basisQuotes": [
+        "river-folk of the Senn",
+        "Senn ford",
+        "the river wards of Aranthal"
+      ],
+      "nearPlaces": [
+        "senn",
+        "aranthal",
+        "sennhold"
+      ],
+      "extendsBeyondBounds": true,
+      "halfWidth": 3.2,
+      "points": [
+        [
+          592,
+          332
+        ],
+        [
+          572,
+          400
+        ],
+        [
+          548,
+          466
+        ],
+        [
+          522,
+          522
+        ],
+        [
+          470,
+          541
+        ],
+        [
+          424,
+          562
+        ],
+        [
+          413,
+          606
+        ],
+        [
+          410,
+          652
+        ],
+        [
+          404,
+          706
+        ],
+        [
+          370,
+          746
+        ],
+        [
+          300,
+          766
+        ],
+        [
+          262,
+          773
+        ],
+        [
+          202,
+          820
+        ],
+        [
+          152,
+          880
+        ],
+        [
+          112,
+          936
+        ],
+        [
+          70,
+          964
+        ]
+      ],
+      "pixels": [
+        [
+          2560,
+          210
+        ],
+        [
+          2460,
+          550
+        ],
+        [
+          2340,
+          880
+        ],
+        [
+          2210,
+          1160
+        ],
+        [
+          1950,
+          1255
+        ],
+        [
+          1720,
+          1360
+        ],
+        [
+          1665,
+          1580
+        ],
+        [
+          1650,
+          1810
+        ],
+        [
+          1620,
+          2080
+        ],
+        [
+          1450,
+          2280
+        ],
+        [
+          1100,
+          2380
+        ],
+        [
+          910,
+          2415
+        ],
+        [
+          610,
+          2650
+        ],
+        [
+          360,
+          2950
+        ],
+        [
+          160,
+          3230
+        ],
+        [
+          -50,
+          3370
+        ]
+      ],
+      "course": [
+        [
+          592,
+          332
+        ],
+        [
+          590.418,
+          337.24
+        ],
+        [
+          588.2,
+          344.177
+        ],
+        [
+          585.536,
+          352.43
+        ],
+        [
+          582.97,
+          361.719
+        ],
+        [
+          580.802,
+          371.696
+        ],
+        [
+          578.566,
+          381.787
+        ],
+        [
+          576.07,
+          391.496
+        ],
+        [
+          574.295,
+          400.835
+        ],
+        [
+          572.34,
+          409.554
+        ],
+        [
+          568.62,
+          417.708
+        ],
+        [
+          562.586,
+          425.047
+        ],
+        [
+          556.916,
+          432.492
+        ],
+        [
+          553.702,
+          440.754
+        ],
+        [
+          551.298,
+          449.182
+        ],
+        [
+          548.839,
+          457.412
+        ],
+        [
+          545.942,
+          465.045
+        ],
+        [
+          543.194,
+          472.882
+        ],
+        [
+          540.66,
+          480.832
+        ],
+        [
+          538.024,
+          488.655
+        ],
+        [
+          535.403,
+          496.312
+        ],
+        [
+          532.59,
+          503.615
+        ],
+        [
+          529.353,
+          510.361
+        ],
+        [
+          526.454,
+          516.814
+        ],
+        [
+          522.451,
+          523.233
+        ],
+        [
+          517.323,
+          527.828
+        ],
+        [
+          511.249,
+          530.842
+        ],
+        [
+          504.619,
+          533.056
+        ],
+        [
+          497.69,
+          534.893
+        ],
+        [
+          490.555,
+          536.318
+        ],
+        [
+          483.395,
+          537.543
+        ],
+        [
+          476.522,
+          539.141
+        ],
+        [
+          470.305,
+          541.669
+        ],
+        [
+          464.309,
+          544.654
+        ],
+        [
+          458.014,
+          547.226
+        ],
+        [
+          451.069,
+          548.368
+        ],
+        [
+          443.689,
+          548.297
+        ],
+        [
+          436.947,
+          549.119
+        ],
+        [
+          431.665,
+          552.385
+        ],
+        [
+          427.543,
+          557.185
+        ],
+        [
+          424.202,
+          562.05
+        ],
+        [
+          420.917,
+          566.391
+        ],
+        [
+          417.668,
+          571.102
+        ],
+        [
+          415.201,
+          576.288
+        ],
+        [
+          413.928,
+          581.966
+        ],
+        [
+          413,
+          587.843
+        ],
+        [
+          412.255,
+          593.792
+        ],
+        [
+          412.07,
+          599.826
+        ],
+        [
+          413.955,
+          606.062
+        ],
+        [
+          416.038,
+          611.846
+        ],
+        [
+          415.777,
+          617.434
+        ],
+        [
+          412.061,
+          622.794
+        ],
+        [
+          407.916,
+          628.162
+        ],
+        [
+          406.68,
+          633.795
+        ],
+        [
+          407.918,
+          639.704
+        ],
+        [
+          409.48,
+          645.789
+        ],
+        [
+          409.754,
+          651.973
+        ],
+        [
+          410.816,
+          658.6
+        ],
+        [
+          412.722,
+          665.638
+        ],
+        [
+          413.482,
+          672.755
+        ],
+        [
+          412.323,
+          679.751
+        ],
+        [
+          410.353,
+          686.637
+        ],
+        [
+          408.689,
+          693.425
+        ],
+        [
+          407.721,
+          700.044
+        ],
+        [
+          405.907,
+          707.621
+        ],
+        [
+          403.654,
+          713.777
+        ],
+        [
+          400.286,
+          719.131
+        ],
+        [
+          396.066,
+          723.91
+        ],
+        [
+          391.633,
+          728.663
+        ],
+        [
+          387.418,
+          733.761
+        ],
+        [
+          383.007,
+          738.856
+        ],
+        [
+          377.887,
+          743.517
+        ],
+        [
+          370.684,
+          748.395
+        ],
+        [
+          363.616,
+          752.563
+        ],
+        [
+          355.297,
+          756.264
+        ],
+        [
+          345.838,
+          758.537
+        ],
+        [
+          335.34,
+          758.377
+        ],
+        [
+          324.847,
+          758.086
+        ],
+        [
+          315.402,
+          759.963
+        ],
+        [
+          307.213,
+          763.377
+        ],
+        [
+          300.138,
+          766.749
+        ],
+        [
+          294.065,
+          768.289
+        ],
+        [
+          288.865,
+          768.266
+        ],
+        [
+          284.36,
+          767.75
+        ],
+        [
+          280.324,
+          767.534
+        ],
+        [
+          276.328,
+          767.327
+        ],
+        [
+          272.073,
+          767.525
+        ],
+        [
+          267.321,
+          768.87
+        ],
+        [
+          260.758,
+          771.414
+        ],
+        [
+          253.745,
+          774.651
+        ],
+        [
+          246.354,
+          779.133
+        ],
+        [
+          238.763,
+          784.687
+        ],
+        [
+          230.922,
+          790.853
+        ],
+        [
+          222.948,
+          797.385
+        ],
+        [
+          215.39,
+          804.583
+        ],
+        [
+          208.443,
+          812.299
+        ],
+        [
+          201.62,
+          819.683
+        ],
+        [
+          194.439,
+          826.269
+        ],
+        [
+          186.914,
+          832.806
+        ],
+        [
+          179.815,
+          839.838
+        ],
+        [
+          173.605,
+          847.65
+        ],
+        [
+          167.822,
+          855.758
+        ],
+        [
+          162.109,
+          863.765
+        ],
+        [
+          156.662,
+          871.735
+        ],
+        [
+          152.305,
+          880.218
+        ],
+        [
+          148.056,
+          888.469
+        ],
+        [
+          142.65,
+          895.871
+        ],
+        [
+          136.094,
+          902.336
+        ],
+        [
+          129.744,
+          908.746
+        ],
+        [
+          124.966,
+          915.983
+        ],
+        [
+          121.748,
+          923.949
+        ],
+        [
+          118.53,
+          931.44
+        ],
+        [
+          113.206,
+          937.809
+        ],
+        [
+          107.111,
+          941.86
+        ],
+        [
+          100.452,
+          945.318
+        ],
+        [
+          94.16,
+          949.195
+        ],
+        [
+          87.813,
+          952.47
+        ],
+        [
+          81.886,
+          955.467
+        ],
+        [
+          76.924,
+          958.621
+        ],
+        [
+          72.95,
+          961.575
+        ],
+        [
+          70,
+          964
+        ]
+      ],
+      "courseNote": "The smoothed, meandering course the atlas and both guides draw (world units, 3 decimals)."
+    },
+    {
+      "id": "atlas:willowwater",
+      "name": "The Willowwater",
+      "canon": "proposed-atlas-addition",
+      "description": "The river crossed at the Willowford. A ford implies a river; its name and course are proposed.",
+      "nearPlaces": [
+        "willowford"
+      ],
+      "relation": "Flows south from the Grey Shoulders through the Willowford to the western sea.",
+      "extendsBeyondBounds": true,
+      "halfWidth": 2.2,
+      "points": [
+        [
+          214,
+          268
+        ],
+        [
+          226,
+          330
+        ],
+        [
+          210,
+          400
+        ],
+        [
+          200,
+          480
+        ],
+        [
+          168,
+          530
+        ],
+        [
+          120,
+          560
+        ],
+        [
+          36,
+          602
+        ]
+      ],
+      "pixels": [
+        [
+          670,
+          -110
+        ],
+        [
+          730,
+          200
+        ],
+        [
+          650,
+          550
+        ],
+        [
+          600,
+          950
+        ],
+        [
+          440,
+          1200
+        ],
+        [
+          200,
+          1350
+        ],
+        [
+          -220,
+          1560
+        ]
+      ],
+      "course": [
+        [
+          214,
+          268
+        ],
+        [
+          214.851,
+          272.78
+        ],
+        [
+          216.198,
+          279.072
+        ],
+        [
+          217.856,
+          286.55
+        ],
+        [
+          220.357,
+          294.749
+        ],
+        [
+          224.164,
+          303.219
+        ],
+        [
+          227.678,
+          311.906
+        ],
+        [
+          228.817,
+          320.851
+        ],
+        [
+          229.061,
+          330.7
+        ],
+        [
+          228.378,
+          339.003
+        ],
+        [
+          226.017,
+          347.204
+        ],
+        [
+          220.942,
+          355.031
+        ],
+        [
+          215.91,
+          363.083
+        ],
+        [
+          213.616,
+          371.94
+        ],
+        [
+          213.688,
+          381.484
+        ],
+        [
+          213.862,
+          391.164
+        ],
+        [
+          212.487,
+          400.311
+        ],
+        [
+          211.434,
+          410.079
+        ],
+        [
+          210.764,
+          420.396
+        ],
+        [
+          210.061,
+          430.996
+        ],
+        [
+          209.558,
+          441.695
+        ],
+        [
+          208.973,
+          452.242
+        ],
+        [
+          207.702,
+          462.349
+        ],
+        [
+          203.728,
+          471.55
+        ],
+        [
+          198.705,
+          479.171
+        ],
+        [
+          195.013,
+          486.447
+        ],
+        [
+          193.66,
+          494.911
+        ],
+        [
+          192.768,
+          503.396
+        ],
+        [
+          190.025,
+          510.461
+        ],
+        [
+          185.805,
+          516.38
+        ],
+        [
+          181.334,
+          521.973
+        ],
+        [
+          176.623,
+          527.284
+        ],
+        [
+          169.765,
+          532.824
+        ],
+        [
+          163.696,
+          535.719
+        ],
+        [
+          157.992,
+          538.662
+        ],
+        [
+          152.469,
+          541.732
+        ],
+        [
+          146.284,
+          543.955
+        ],
+        [
+          139.9,
+          546.447
+        ],
+        [
+          133.583,
+          550.008
+        ],
+        [
+          126.877,
+          554.284
+        ],
+        [
+          119.436,
+          558.871
+        ],
+        [
+          110.165,
+          563.995
+        ],
+        [
+          99.291,
+          570.098
+        ],
+        [
+          87.372,
+          576.571
+        ],
+        [
+          74.936,
+          582.748
+        ],
+        [
+          62.818,
+          588.575
+        ],
+        [
+          51.822,
+          593.941
+        ],
+        [
+          42.648,
+          598.52
+        ],
+        [
+          36,
+          602
+        ]
+      ],
+      "courseNote": "The smoothed, meandering course the atlas and both guides draw (world units, 3 decimals)."
+    },
+    {
+      "id": "atlas:eastrun",
+      "name": "The Eastrun",
+      "canon": "proposed-atlas-addition",
+      "description": "A river draining the Anvil Heights southward through Eastmere Forest.",
+      "nearPlaces": [
+        "deephold-gate"
+      ],
+      "relation": "Rises south of the Anvil Heights and leaves the map to the south.",
+      "extendsBeyondBounds": true,
+      "halfWidth": 2.2,
+      "points": [
+        [
+          822,
+          612
+        ],
+        [
+          800,
+          664
+        ],
+        [
+          782,
+          722
+        ],
+        [
+          770,
+          802
+        ],
+        [
+          790,
+          884
+        ],
+        [
+          772,
+          1020
+        ]
+      ],
+      "pixels": [
+        [
+          3710,
+          1610
+        ],
+        [
+          3600,
+          1870
+        ],
+        [
+          3510,
+          2160
+        ],
+        [
+          3450,
+          2560
+        ],
+        [
+          3550,
+          2970
+        ],
+        [
+          3460,
+          3650
+        ]
+      ],
+      "course": [
+        [
+          822,
+          612
+        ],
+        [
+          820.802,
+          616.193
+        ],
+        [
+          818.74,
+          621.536
+        ],
+        [
+          816.121,
+          627.824
+        ],
+        [
+          813.437,
+          634.93
+        ],
+        [
+          810.757,
+          642.551
+        ],
+        [
+          808.095,
+          650.358
+        ],
+        [
+          804.576,
+          657.647
+        ],
+        [
+          800.515,
+          664.16
+        ],
+        [
+          796.925,
+          670.629
+        ],
+        [
+          794.715,
+          677.45
+        ],
+        [
+          793.393,
+          684.561
+        ],
+        [
+          791.991,
+          691.752
+        ],
+        [
+          789.634,
+          698.84
+        ],
+        [
+          786.495,
+          705.971
+        ],
+        [
+          783.505,
+          713.523
+        ],
+        [
+          781.613,
+          721.942
+        ],
+        [
+          780.925,
+          731.073
+        ],
+        [
+          780.142,
+          740.753
+        ],
+        [
+          778.104,
+          750.668
+        ],
+        [
+          774.55,
+          760.639
+        ],
+        [
+          771.052,
+          770.761
+        ],
+        [
+          769.217,
+          781.135
+        ],
+        [
+          768.087,
+          791.478
+        ],
+        [
+          767.627,
+          802.579
+        ],
+        [
+          768.697,
+          812.403
+        ],
+        [
+          772.383,
+          821.4
+        ],
+        [
+          777.401,
+          830.09
+        ],
+        [
+          781.763,
+          839.161
+        ],
+        [
+          785.766,
+          848.746
+        ],
+        [
+          789.63,
+          858.996
+        ],
+        [
+          792.238,
+          870.387
+        ],
+        [
+          793.251,
+          884.43
+        ],
+        [
+          792.789,
+          899.788
+        ],
+        [
+          791.15,
+          917.841
+        ],
+        [
+          787.902,
+          937.374
+        ],
+        [
+          784.062,
+          957.365
+        ],
+        [
+          780.296,
+          976.746
+        ],
+        [
+          776.92,
+          994.402
+        ],
+        [
+          774.05,
+          1009.192
+        ],
+        [
+          772,
+          1020
+        ]
+      ],
+      "courseNote": "The smoothed, meandering course the atlas and both guides draw (world units, 3 decimals)."
+    },
+    {
+      "id": "atlas:fell-beck",
+      "name": "The Fell Beck",
+      "canon": "proposed-atlas-addition",
+      "description": "A cold stream out of Cairnwater that joins the Nindor.",
+      "nearPlaces": [
+        "nindor",
+        "three-cairns"
+      ],
+      "relation": "Tributary of the Nindor from the east.",
+      "extendsBeyondBounds": false,
+      "halfWidth": 1.5,
+      "points": [
+        [
+          848,
+          300
+        ],
+        [
+          806,
+          306
+        ],
+        [
+          770,
+          312
+        ]
+      ],
+      "pixels": [
+        [
+          3840,
+          50
+        ],
+        [
+          3630,
+          80
+        ],
+        [
+          3450,
+          110
+        ]
+      ],
+      "course": [
+        [
+          848,
+          300
+        ],
+        [
+          844.661,
+          300.057
+        ],
+        [
+          840.179,
+          300.143
+        ],
+        [
+          834.846,
+          300.296
+        ],
+        [
+          829.019,
+          301.006
+        ],
+        [
+          823.03,
+          302.603
+        ],
+        [
+          817.047,
+          304.25
+        ],
+        [
+          811.17,
+          304.646
+        ],
+        [
+          805.683,
+          304.1
+        ],
+        [
+          800.477,
+          303.85
+        ],
+        [
+          795.268,
+          304.842
+        ],
+        [
+          790.194,
+          306.806
+        ],
+        [
+          785.219,
+          308.44
+        ],
+        [
+          780.481,
+          309.479
+        ],
+        [
+          776.226,
+          310.308
+        ],
+        [
+          772.674,
+          311.164
+        ],
+        [
+          770,
+          312
+        ]
+      ],
+      "courseNote": "The smoothed, meandering course the atlas and both guides draw (world units, 3 decimals)."
+    },
+    {
+      "id": "atlas:hill-brook",
+      "name": "The Hill Brook",
+      "canon": "proposed-atlas-addition",
+      "description": "A brook off the long hills that joins the Senn above Aranthal.",
+      "nearPlaces": [
+        "aranthal"
+      ],
+      "relation": "Tributary of the Senn from the south-east.",
+      "extendsBeyondBounds": false,
+      "halfWidth": 1.5,
+      "points": [
+        [
+          474,
+          782
+        ],
+        [
+          432,
+          752
+        ],
+        [
+          392,
+          742
+        ],
+        [
+          370,
+          746
+        ]
+      ],
+      "pixels": [
+        [
+          1970,
+          2460
+        ],
+        [
+          1760,
+          2310
+        ],
+        [
+          1560,
+          2260
+        ],
+        [
+          1450,
+          2280
+        ]
+      ],
+      "course": [
+        [
+          474,
+          782
+        ],
+        [
+          471.084,
+          779.076
+        ],
+        [
+          466.838,
+          775.536
+        ],
+        [
+          461.663,
+          771.473
+        ],
+        [
+          456.304,
+          766.5
+        ],
+        [
+          451.134,
+          760.744
+        ],
+        [
+          445.934,
+          755.171
+        ],
+        [
+          439.479,
+          752.146
+        ],
+        [
+          432.192,
+          751.231
+        ],
+        [
+          426.461,
+          750.977
+        ],
+        [
+          421.122,
+          749.029
+        ],
+        [
+          415.89,
+          746.862
+        ],
+        [
+          410.701,
+          745.073
+        ],
+        [
+          405.597,
+          743.832
+        ],
+        [
+          400.857,
+          742.37
+        ],
+        [
+          396.452,
+          741.135
+        ],
+        [
+          391.703,
+          740.365
+        ],
+        [
+          387.731,
+          739.066
+        ],
+        [
+          383.99,
+          738.104
+        ],
+        [
+          380.838,
+          739.205
+        ],
+        [
+          378.151,
+          741.457
+        ],
+        [
+          375.718,
+          743.467
+        ],
+        [
+          373.478,
+          744.66
+        ],
+        [
+          371.594,
+          745.706
+        ],
+        [
+          370,
+          746
+        ]
+      ],
+      "courseNote": "The smoothed, meandering course the atlas and both guides draw (world units, 3 decimals)."
+    }
+  ],
+  "lakes": [
+    {
+      "id": "atlas:harrowmere-water",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "A mere beside Harrowmere, drawn only because of the town’s name.",
+      "basisQuotes": [],
+      "basisNote": "Rests on the place name alone.",
+      "nearPlaces": [
+        "harrowmere"
+      ],
+      "extendsBeyondBounds": false,
+      "polygon": [
+        [
+          386.883,
+          462
+        ],
+        [
+          383.098,
+          467.156
+        ],
+        [
+          378.819,
+          473.567
+        ],
+        [
+          370.03,
+          471.53
+        ],
+        [
+          362.78,
+          468.359
+        ],
+        [
+          363.34,
+          462
+        ],
+        [
+          363.564,
+          456.086
+        ],
+        [
+          369.79,
+          451.893
+        ],
+        [
+          378.408,
+          451.418
+        ],
+        [
+          384.969,
+          455.784
+        ]
+      ]
+    },
+    {
+      "id": "atlas:gorge-tarn",
+      "name": null,
+      "canon": "atlas-interpretation",
+      "description": "The tarn north of the Cinder Gorge.",
+      "basisQuotes": [
+        "the tarn half a mile north"
+      ],
+      "nearPlaces": [
+        "cinder-gorge"
+      ],
+      "extendsBeyondBounds": false,
+      "polygon": [
+        [
+          615.919,
+          440
+        ],
+        [
+          615.511,
+          441.99
+        ],
+        [
+          613.565,
+          443.758
+        ],
+        [
+          610.567,
+          443.44
+        ],
+        [
+          608.141,
+          442.187
+        ],
+        [
+          608.432,
+          440
+        ],
+        [
+          608.171,
+          437.83
+        ],
+        [
+          610.667,
+          436.801
+        ],
+        [
+          613.682,
+          435.961
+        ],
+        [
+          615.334,
+          438.111
+        ]
+      ]
+    },
+    {
+      "id": "atlas:cairnwater",
+      "name": "Cairnwater",
+      "canon": "proposed-atlas-addition",
+      "description": "A tarn under the northern fells.",
+      "nearPlaces": [
+        "three-cairns",
+        "hirnost"
+      ],
+      "relation": "East of the Three Cairns.",
+      "extendsBeyondBounds": false,
+      "polygon": [
+        [
+          867.855,
+          300
+        ],
+        [
+          862.841,
+          303.877
+        ],
+        [
+          859.053,
+          307.328
+        ],
+        [
+          853.261,
+          306.575
+        ],
+        [
+          846.729,
+          305.254
+        ],
+        [
+          845.392,
+          300
+        ],
+        [
+          848.001,
+          295.467
+        ],
+        [
+          853.174,
+          293.216
+        ],
+        [
+          858.752,
+          293.393
+        ],
+        [
+          865.191,
+          294.791
+        ]
+      ]
+    }
+  ],
+  "roads": [
+    {
+      "id": "atlas:hillway",
+      "name": "The Hillway",
+      "canon": "proposed-atlas-addition",
+      "description": "An old drove-road along the northern foot of the long hills. No record mentions it.",
+      "nearPlaces": [
+        "aranthal"
+      ],
+      "relation": "From Aranthal east along the long hills toward Fallowsteading.",
+      "extendsBeyondBounds": false,
+      "points": [
+        [
+          250,
+          760
+        ],
+        [
+          330,
+          792
+        ],
+        [
+          420,
+          804
+        ],
+        [
+          500,
+          794
+        ],
+        [
+          600,
+          814
+        ],
+        [
+          690,
+          776
+        ],
+        [
+          700,
+          706
+        ]
+      ],
+      "pixels": [
+        [
+          850,
+          2350
+        ],
+        [
+          1250,
+          2510
+        ],
+        [
+          1700,
+          2570
+        ],
+        [
+          2100,
+          2520
+        ],
+        [
+          2600,
+          2620
+        ],
+        [
+          3050,
+          2430
+        ],
+        [
+          3100,
+          2080
+        ]
+      ]
+    }
+  ],
+  "pointFeatures": [
+    {
+      "id": "atlas:sennbridge",
+      "name": "Sennbridge",
+      "canon": "proposed-atlas-addition",
+      "description": "An old stone bridge over the Senn. (The record has a Senn ford; this bridge is an addition, not that ford.)",
+      "nearPlaces": [
+        "senn",
+        "harrowmere"
+      ],
+      "relation": "On the Senn south-east of Harrowmere.",
+      "extendsBeyondBounds": false,
+      "type": "bridge",
+      "world": [
+        470,
+        541
+      ],
+      "pixel": [
+        1950,
+        1255
+      ]
+    },
+    {
+      "id": "atlas:three-sisters",
+      "name": "The Three Sisters",
+      "canon": "proposed-atlas-addition",
+      "description": "Three standing stones on a crest of the long hills, a waymark for travellers.",
+      "nearPlaces": [
+        "ennor-luth"
+      ],
+      "relation": "On the long hills, north of Ennor-Lûth.",
+      "extendsBeyondBounds": false,
+      "type": "landmark",
+      "world": [
+        500,
+        784
+      ],
+      "pixel": [
+        2100,
+        2470
+      ]
+    },
+    {
+      "id": "atlas:fallowsteading",
+      "name": "Fallowsteading",
+      "canon": "proposed-atlas-addition",
+      "description": "A farmstead village on the open ground south of the Harrow.",
+      "nearPlaces": [
+        "harrow"
+      ],
+      "relation": "South of the Harrow, north-west of Eastmere Forest.",
+      "extendsBeyondBounds": false,
+      "type": "settlement",
+      "world": [
+        700,
+        706
+      ],
+      "pixel": [
+        3100,
+        2080
+      ]
+    }
+  ],
+  "recordedRoutes": [
+    {
+      "id": "moonroad",
+      "label": "The Moonroad",
+      "kind": "travelled",
+      "canon": "confirmed-canon",
+      "quote": "twelve days on the Moonroad",
+      "stops": [
+        {
+          "id": "location:greyfold",
+          "world": [
+            400,
+            660
+          ],
+          "insideBounds": true
+        },
+        {
+          "id": "location:elendrath",
+          "world": [
+            186,
+            604
+          ],
+          "insideBounds": true
+        }
+      ],
+      "geometry": "schematic: a line between the stops. The documents give no road geometry. Drawn live by the website, never part of the artwork."
+    },
+    {
+      "id": "ironway-gorge",
+      "label": "The Ironway",
+      "kind": "road",
+      "canon": "confirmed-canon",
+      "quote": "narrow gorge on the Ironway three leagues north of the Toll-stone",
+      "stops": [
+        {
+          "id": "location:toll-stone",
+          "world": [
+            610,
+            502
+          ],
+          "insideBounds": true
+        },
+        {
+          "id": "location:cinder-gorge",
+          "world": [
+            610,
+            455
+          ],
+          "insideBounds": true
+        }
+      ],
+      "geometry": "schematic: a line between the stops. The documents give no road geometry. Drawn live by the website, never part of the artwork."
+    },
+    {
+      "id": "to-taur-galen",
+      "label": "Way to Taur-Galen",
+      "kind": "planned",
+      "canon": "confirmed-canon",
+      "quote": "from the Grey Step, NE up the Nindor 4 days; at the Three Cairns climb Hirnost",
+      "stops": [
+        {
+          "id": "location:grey-step",
+          "world": [
+            690,
+            381
+          ],
+          "insideBounds": true
+        },
+        {
+          "id": "location:three-cairns",
+          "world": [
+            805,
+            266
+          ],
+          "insideBounds": false
+        },
+        {
+          "id": "location:hirnost",
+          "world": [
+            815,
+            256
+          ],
+          "insideBounds": false
+        }
+      ],
+      "geometry": "schematic: a line between the stops. The documents give no road geometry. Drawn live by the website, never part of the artwork."
+    }
+  ],
+  "proposedAdditions": [
+    "atlas:grey-shoulders",
+    "atlas:anvil-heights",
+    "atlas:alderwilds",
+    "atlas:eastmere-forest",
+    "atlas:southing-wood",
+    "atlas:willowwater",
+    "atlas:eastrun",
+    "atlas:fell-beck",
+    "atlas:hill-brook",
+    "atlas:cairnwater",
+    "atlas:hillway",
+    "atlas:sennbridge",
+    "atlas:three-sisters",
+    "atlas:fallowsteading"
+  ],
+  "terrainClasses": [
+    {
+      "key": "lowland",
+      "label": "Open lowland",
+      "geographyGuideColour": "#f3efe2",
+      "artworkGuideColour": "#a9b77a",
+      "paintAs": "Open grassland, meadow and farmed valley floor.",
+      "shareOfRegion": 0.6351
+    },
+    {
+      "key": "groves",
+      "label": "Scattered groves (texture only, not data)",
+      "geographyGuideColour": "#f3efe2",
+      "artworkGuideColour": "#8fa765",
+      "paintAs": "Loose copses and hedgerow trees thinning into open country. Placement is free.",
+      "shareOfRegion": 0.0838
+    },
+    {
+      "key": "forest-green",
+      "label": "Forest: green broadleaf",
+      "geographyGuideColour": "#4caf50",
+      "artworkGuideColour": "#3f6b3a",
+      "paintAs": "Dense continuous canopy, deep green.",
+      "shareOfRegion": 0.0426
+    },
+    {
+      "key": "forest-silver",
+      "label": "Forest: the Silverwood",
+      "geographyGuideColour": "#8fd3c4",
+      "artworkGuideColour": "#7fa39a",
+      "paintAs": "Dense continuous canopy with pale, silver-grey foliage.",
+      "shareOfRegion": 0.0674
+    },
+    {
+      "key": "forest-scarred",
+      "label": "Forest: Uchkeken, fire-scarred",
+      "geographyGuideColour": "#c0692b",
+      "artworkGuideColour": "#6b5a43",
+      "paintAs": "Burnt and recovering wood: dead grey timber, charred stumps, ash-dark ground, new green returning. Not lush.",
+      "shareOfRegion": 0.0484
+    },
+    {
+      "key": "heath",
+      "label": "Heath and moor",
+      "geographyGuideColour": "#e0cc66",
+      "artworkGuideColour": "#b59f6a",
+      "paintAs": "Open upland heath: heather, peat, rough grass, few trees.",
+      "shareOfRegion": 0.0225
+    },
+    {
+      "key": "hills",
+      "label": "Hills and foothills",
+      "geographyGuideColour": "#d9b88c",
+      "artworkGuideColour": "#9c9a6c",
+      "paintAs": "Rolling hills and the lower slopes of the ranges.",
+      "shareOfRegion": 0.0661
+    },
+    {
+      "key": "mountain",
+      "label": "Mountains",
+      "geographyGuideColour": "#9a9a9a",
+      "artworkGuideColour": "#8a8378",
+      "paintAs": "Connected rocky mountains with strong relief.",
+      "shareOfRegion": 0.0329
+    },
+    {
+      "key": "peak",
+      "label": "High crests",
+      "geographyGuideColour": "#5e5e5e",
+      "artworkGuideColour": "#bcb7b0",
+      "paintAs": "The highest crests of a range: bare rock, snow only where the manifest marks the range snowy.",
+      "shareOfRegion": 0.0011
+    }
+  ],
+  "geographyGuideLegendBox": {
+    "x0": 85,
+    "y0": 295,
+    "x1": 199,
+    "y1": 403,
+    "note": "World rectangle covered by the legend in geography-guide.png. It hides only open lowland."
+  },
+  "integration": {
+    "slot": "/atlas-art/regions/uchkeken-region.{webp,png,jpg}",
+    "registry": "src/atlas/regions.ts",
+    "featherWorldUnits": 20,
+    "neighbourOverlapWorldUnits": 40
+  }
+}
