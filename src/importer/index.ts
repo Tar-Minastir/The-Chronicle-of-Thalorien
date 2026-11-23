@@ -20,7 +20,7 @@ import { parseMarkdown } from './markdown';
 import { AUTHORIZED_DOCS, REJECT_MESSAGES, baseName, classifyFileName, verifyContent, type RejectReason } from './sourcePolicy';
 
 /** Bump when extraction rules change, so stored snapshots are recomputed. */
-export const IMPORTER_VERSION = 1;
+export const IMPORTER_VERSION = 2; // 2: provisional gazetteer points respaced for the illustrated atlas
 
 export interface RawSource {
   fileName: string;

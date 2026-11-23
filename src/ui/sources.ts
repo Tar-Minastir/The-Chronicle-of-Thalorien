@@ -31,13 +31,26 @@ export async function readPickedFiles(files: Iterable<PickedFile>): Promise<Gath
   return out;
 }
 
-/** The dev/preview server endpoint that serves the four authorized files from disk. */
-export async function fetchDiskSources(fetchFn: typeof fetch = fetch): Promise<GatheredSources> {
-  const res = await fetchFn('/__campaign/sources', { cache: 'no-store' });
-  const type = res.headers.get('content-type') ?? '';
-  if (!res.ok || !type.includes('application/json')) {
+type SourceBundle = { documents: RawSource[]; missing: string[]; rejected: RejectedSource[] };
+
+async function jsonOrNull(fetchFn: typeof fetch, url: string): Promise<SourceBundle | null> {
+  try {
+    const res = await fetchFn(url, { cache: 'no-store' });
+    const type = res.headers.get('content-type') ?? '';
+    return res.ok && type.includes('application/json') ? ((await res.json()) as SourceBundle) : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The four authorized files: from the dev/preview server endpoint when running locally, else from the
+ * copy a hosted build (GitHub Pages) was published with. Either way the repository re-applies the source policy.
+ */
+export async function fetchDiskSources(fetchFn: typeof fetch = fetch, base: string = import.meta.env?.BASE_URL ?? '/'): Promise<GatheredSources> {
+  const body = (await jsonOrNull(fetchFn, `${base}__campaign/sources`)) ?? (await jsonOrNull(fetchFn, `${base}campaign-sources.json`));
+  if (!body) {
     throw new Error('Disk sync is only available while running `npm run dev` or `npm run preview`. Use "Choose files" instead.');
   }
-  const body = (await res.json()) as { documents: RawSource[]; missing: string[]; rejected: RejectedSource[] };
   return { sources: body.documents, rejected: body.rejected, missing: body.missing };
 }

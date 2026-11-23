@@ -4,8 +4,9 @@
  * importer never reads or writes it.
  */
 import type { Point } from '../domain/types';
+import { emptyAtlasEdits, type AtlasEdits } from '../atlas/geography';
 
-export const USER_LAYER_VERSION = 1;
+export const USER_LAYER_VERSION = 2;
 
 export interface Annotation {
   id: string;
@@ -28,11 +29,13 @@ export interface MergeDecision {
 
 export interface UserLayer {
   version: number;
-  /** locationId -> position chosen by the user (overrides the provisional point). */
+  /** locationId (or `atlas:` point-feature id) -> position chosen by the user (overrides the provisional point). */
   markerOverrides: Record<string, Point>;
   annotations: Annotation[];
   mergeDecisions: MergeDecision[];
   dismissedIssueIds: string[];
+  /** The player's renames, re-descriptions and removals of PROPOSED atlas features. Never affects campaign data. */
+  atlas: AtlasEdits;
 }
 
 export const emptyUserLayer = (): UserLayer => ({
@@ -41,6 +44,7 @@ export const emptyUserLayer = (): UserLayer => ({
   annotations: [],
   mergeDecisions: [],
   dismissedIssueIds: [],
+  atlas: emptyAtlasEdits(),
 });
 
 /** Accept anything that was stored (older versions, partial objects) and return a valid layer. */
@@ -52,12 +56,25 @@ export function normalizeUserLayer(raw: unknown): UserLayer {
   for (const [id, p] of Object.entries(r.markerOverrides ?? {})) {
     if (p && Number.isFinite(p.x) && Number.isFinite(p.y)) overrides[id] = { x: p.x, y: p.y };
   }
+  const edits: AtlasEdits['edits'] = {};
+  for (const [id, e] of Object.entries(r.atlas?.edits ?? {})) {
+    if (e && typeof e === 'object') {
+      edits[id] = {
+        name: typeof e.name === 'string' ? e.name : undefined,
+        description: typeof e.description === 'string' ? e.description : undefined,
+      };
+    }
+  }
   return {
     version: USER_LAYER_VERSION,
     markerOverrides: overrides,
     annotations: Array.isArray(r.annotations) ? r.annotations.filter((a) => a && typeof a.id === 'string') : [],
     mergeDecisions: Array.isArray(r.mergeDecisions) ? r.mergeDecisions : [],
     dismissedIssueIds: Array.isArray(r.dismissedIssueIds) ? r.dismissedIssueIds : [],
+    atlas: {
+      removed: Array.isArray(r.atlas?.removed) ? r.atlas.removed.filter((x) => typeof x === 'string') : [],
+      edits,
+    },
   };
 }
 
@@ -93,4 +110,20 @@ export function decideMerge(l: UserLayer, a: string, b: string, decision: MergeD
 export const dismissIssue = (l: UserLayer, issueId: string): UserLayer => ({
   ...l,
   dismissedIssueIds: [...new Set([...l.dismissedIssueIds, issueId])],
+});
+
+/** Rename or re-describe a proposed atlas feature. Empty strings fall back to the atlas's own text. */
+export const editAtlasFeature = (l: UserLayer, id: string, edit: { name?: string; description?: string }): UserLayer => ({
+  ...l,
+  atlas: { ...l.atlas, edits: { ...l.atlas.edits, [id]: { ...l.atlas.edits[id], ...edit } } },
+});
+
+export const removeAtlasFeature = (l: UserLayer, id: string): UserLayer => ({
+  ...l,
+  atlas: { ...l.atlas, removed: [...new Set([...l.atlas.removed, id])] },
+});
+
+export const restoreAtlasFeature = (l: UserLayer, id: string): UserLayer => ({
+  ...l,
+  atlas: { ...l.atlas, removed: l.atlas.removed.filter((x) => x !== id) },
 });

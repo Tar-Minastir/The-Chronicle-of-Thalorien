@@ -41,7 +41,7 @@ export interface GazetteerEntry {
 
 export const GAZETTEER: readonly GazetteerEntry[] = [
   // --- Uchkeken ---
-  { id: 'uchkeken', name: 'Uchkeken', kind: 'region', tier: 0, at: [508, 624] },
+  { id: 'uchkeken', name: 'Uchkeken', kind: 'region', tier: 0, at: [500, 606] },
   {
     id: 'heart-of-uchkeken', name: 'The heart of Uchkeken', aliases: ['heart of Uchkeken'], silenceAliases: ['White Tree of Uchkeken'],
     kind: 'site', tier: 1, parent: 'uchkeken', at: [520, 640],
@@ -56,16 +56,16 @@ export const GAZETTEER: readonly GazetteerEntry[] = [
     relations: [{ kind: 'bearing', target: 'heart-of-uchkeken', bearing: 'SE', quote: '1.5 miles south-east of the heart', certainty: 'stated' }],
   },
   // --- Elendrath ---
-  { id: 'elendrath', name: 'Elendrath', kind: 'region', tier: 0, at: [170, 632] },
+  { id: 'elendrath', name: 'Elendrath', kind: 'region', tier: 0, at: [186, 604] },
   {
-    id: 'moon-well', name: 'The Moon-Well', aliases: ['Moon-Well'], silenceAliases: ['Moon-Well'], kind: 'site', tier: 1, parent: 'elendrath', at: [150, 648],
+    id: 'moon-well', name: 'The Moon-Well', aliases: ['Moon-Well'], silenceAliases: ['Moon-Well'], kind: 'site', tier: 1, parent: 'elendrath', at: [152, 656],
     relations: [
       { kind: 'within', target: 'elendrath', quote: 'a crescent moon in a well (Elendrath)', certainty: 'stated' },
       { kind: 'bearing', target: 'heart-of-uchkeken', bearing: 'W', quote: 'the Moon-Well (still, sleeps well, west)', certainty: 'stated' },
     ],
   },
   {
-    id: 'ithilmar', name: 'Ithilmar', kind: 'settlement', tier: 1, parent: 'elendrath', at: [176, 624],
+    id: 'ithilmar', name: 'Ithilmar', kind: 'settlement', tier: 1, parent: 'elendrath', at: [212, 636],
     relations: [{ kind: 'within', target: 'elendrath', quote: "Queen Aelindra's chamber in Ithilmar", certainty: 'inferred' }],
   },
   { id: 'silverwood', name: 'The Silverwood', aliases: ['Silverwood'], kind: 'region', tier: 1, at: [300, 652] },
@@ -128,7 +128,7 @@ export const GAZETTEER: readonly GazetteerEntry[] = [
     relations: [{ kind: 'bearing', target: 'harrowmere', bearing: 'E', quote: 'the Mask east to Dun Ommar', certainty: 'stated' }],
   },
   {
-    id: 'deep-anvil', name: 'The Deep Anvil', aliases: ['Deep Anvil'], silenceAliases: ['Deep Anvil'], kind: 'site', tier: 1, parent: 'dun-ommar', at: [724, 490],
+    id: 'deep-anvil', name: 'The Deep Anvil', aliases: ['Deep Anvil'], silenceAliases: ['Deep Anvil'], kind: 'site', tier: 1, parent: 'dun-ommar', at: [752, 508],
     relations: [{ kind: 'within', target: 'dun-ommar', quote: 'the Deep Anvil of Dun Ommar', certainty: 'stated' }],
   },
   { id: 'ironway', name: 'The Ironway', aliases: ['Ironway'], kind: 'route', tier: 1, at: [530, 492] },
